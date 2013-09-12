@@ -72,6 +72,9 @@ PRODUCT_PACKAGES += \
     crda \
     regulatory.bin \
     calibrator
+    
+PRODUCT_COPY_FILES += \
+    device/htc/bravo/prebuilt/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf 
 
 # Sensors
 PRODUCT_PACKAGES += \
