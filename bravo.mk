@@ -40,7 +40,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.ril.hsxpa=2 \
     ro.ril.def.agps.mode=2 \
     ro.ril.disable.power.collapse=0 \
-    windowsmgr.max_events_per_sec=120 \
+    windowsmgr.max_events_per_sec=150 \
     mobiledata.interfaces=rmnet0,rmnet1,rmnet2 \
     ro.media.dec.jpeg.memcap=20000000 \
     ro.opengles.version=131072 \
@@ -99,3 +99,15 @@ $(call inherit-product, device/htc/qsd8k-common/qsd8k.mk)
 
 # Also get non-open-source GSM-specific aspects if available
 $(call inherit-product-if-exists, vendor/htc/bravo/bravo-vendor.mk)
+
+# Don't put /dalvik-cache to /cache patition. (for CM)
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.dexopt-data-only=1
+
+# Torch
+PRODUCT_PACKAGES += \
+    Torch
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.cm.version=11.0-KitKANG-bravo \
+    ro.modversion=11.0-KitKANG-bravo

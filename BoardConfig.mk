@@ -32,6 +32,8 @@ include device/htc/qsd8k-common/BoardConfigCommon.mk
 
 TARGET_BOOTLOADER_BOARD_NAME := bravo
 
+TARGET_RECOVERY_FSTAB = device/htc/bravo/fstab.bravo
+
 BOARD_KERNEL_CMDLINE := no_console_suspend=1 msmsdcc_sdioirq=1 wire.search_count=5
 BOARD_KERNEL_BASE := 0x20000000
 BOARD_KERNEL_NEW_PPPOX := true
@@ -54,10 +56,6 @@ BOARD_USE_LEGACY_TOUCHSCREEN := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/usb_mass_storage/lun0/file
 BOARD_USE_LEGACY_TRACKPAD := true
 
-
-# Recovery
-TARGET_RECOVERY_FSTAB   := device/htc/bravo/fstab.bravo
-
 # # cat /proc/mtd
 # dev:    size   erasesize  name
 # mtd0: 000a0000 00020000 "misc"
@@ -68,6 +66,15 @@ TARGET_RECOVERY_FSTAB   := device/htc/bravo/fstab.bravo
 # mtd5: 093a0000 00020000 "userdata"
 BOARD_BOOTIMAGE_PARTITION_SIZE := 0x00280000
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x00500000
-BOARD_SYSTEMIMAGE_PARTITION_SIZE :=  262144000 # 0x09100000
+BOARD_SYSTEMIMAGE_PARTITION_SIZE :=  362144000 # 0x09100000
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 154140672 # 0x093a0000
 BOARD_FLASH_BLOCK_SIZE := 131072
+
+# Legacy ril (for CM)
+LEGACY_RIL := true
+BOARD_USES_LEGACY_RIL := true
+
+# Override in the CM way
+# Use old kernel toolchain.  GCC 4.6 may be the root cause of our modem
+# interface dying all the time.
+TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.4.3
