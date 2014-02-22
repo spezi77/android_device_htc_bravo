@@ -1,0 +1,142 @@
+import init.bravo.usb.rc
+
+on init
+    mkdir /storage 0050 system sdcard_r
+    mkdir /mnt/media_rw/sdcard0 0700 media_rw media_rw
+    mkdir /storage/sdcard0 0700 root root
+
+# for backwards compatibility
+    symlink /storage/sdcard0 /sdcard
+    symlink /storage/sdcard0 /mnt/sdcard
+
+    export EXTERNAL_STORAGE /storage/sdcard0
+
+on fs
+# mount mtd partitions
+    # Mount /system rw first to give the filesystem a chance to save a checkpoint
+    mount yaffs2 mtd@system /system
+    mount yaffs2 mtd@system /system ro remount
+    mount yaffs2 mtd@userdata /data nosuid nodev
+    mount yaffs2 mtd@cache /cache nosuid nodev
+
+on post-fs-data
+    mkdir /data/misc/wifi 0770 wifi wifi
+    mkdir /data/misc/wifi/sockets 0770 wifi wifi
+    mkdir /data/misc/dhcp 0770 dhcp dhcp
+    chown dhcp dhcp /data/misc/dhcp
+
+on boot
+    mount debugfs /sys/kernel/debug /sys/kernel/debug
+
+    # bluetooth power up/down interface
+    chown bluetooth bluetooth /dev/ttyHS0
+    chmod 0600 /dev/ttyHS0
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
+    chmod 0660                /sys/class/rfkill/rfkill0/state
+
+    chown radio radio /sys/module/pm/parameters/idle_sleep_mode
+
+    # bluetooth MAC address programming
+    chown bluetooth bluetooth /sys/module/board_bravo/parameters/bdaddr
+    setprop ro.bt.bdaddr_path /sys/module/board_bravo/parameters/bdaddr
+
+    # bluetooth car dock pin
+    chown system system /sys/class/switch/dock/bt_pin
+
+    # Permissions for Liblights.
+    chown system system /sys/class/leds/green/brightness
+    chown system system /sys/class/leds/green/blink
+    chown system system /sys/class/leds/amber/brightness
+    chown system system /sys/class/leds/amber/blink
+    chown system system /sys/class/leds/blue/brightness
+    chown system system /sys/class/leds/blue/blink
+    chown system system /sys/class/leds/button-backlight/brightness
+    chown system system /sys/class/leds/lcd-backlight/brightness
+
+    # flashlight
+    chown system camera /sys/devices/platform/flashlight.0/leds/flashlight/brightness
+    chmod 0660          /sys/devices/platform/flashlight.0/leds/flashlight/brightness
+
+    # enable the GPS
+    setprop ro.ril.def.agps.mode 2
+
+    # performance tweaks for flash
+    write /sys/block/mtdblock3/bdi/read_ahead_kb 4
+    write /sys/block/mtdblock4/bdi/read_ahead_kb 4
+    write /sys/block/mtdblock5/bdi/read_ahead_kb 4
+
+    # Wakelock debug
+    write /sys/module/wakelock/parameters/debug_mask 7
+
+    # Fast dormancy settings
+    setprop ro.ril.fast.dormancy.rule 1
+    setprop ro.ril.fd.scron.timeout 4
+    setprop ro.ril.fd.scroff.timeout 3
+
+   #sdcard daemon
+service fuse_sdcard0 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard0 /storage/sdcard0
+    class late_start
+    disabled
+
+    # compass/accelerometer daemon
+service akmd /system/bin/akmd
+    class main
+    user compass
+    group compass misc input
+
+service wpa_supplicant /system/bin/wpa_supplicant \
+    -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
+    -O/data/misc/wifi/sockets -e/data/misc/wifi/entropy.bin \
+    -g@android:wpa_wlan0
+
+    class main
+    socket wpa_wlan0 dgram 660 wifi wifi
+    disabled
+    oneshot
+
+    # wifi
+service dhcpcd_wlan0 /system/bin/dhcpcd -aABDKL
+    class main
+    disabled
+    oneshot
+    
+    # bluetooth
+service dhcpcd_bnep0 /system/bin/dhcpcd -aABKL
+    class main
+    disabled
+    oneshot
+    
+    # wifi
+service iprenew_wlan0 /system/bin/dhcpcd -n
+    class main
+    disabled
+    oneshot
+
+    # bluetooth
+service iprenew_bnep0 /system/bin/dhcpcd -n
+    class main
+    disabled
+    oneshot
+
+    # bugreport is triggered by the KEY_VOLUMEUP and BTN_MOUSE keycodes
+service bugreport /system/bin/dumpstate -d -v -o /sdcard/bugreports/bugreport
+    class main
+    disabled
+    oneshot
+    keycodes 115 272
+
+    # Wifi - Tethering
+on property:init.svc.wpa_supplicant=stopped
+    stop dhcpcd
+
+service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
+    class late_start
+    user root
+    disabled
+    oneshot
+
+on property:dev.bootcomplete=1
+    start qcom-post-boot
+
+service dspcrashd /system/bin/dspcrashd
