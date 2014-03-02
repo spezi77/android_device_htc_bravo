@@ -228,4 +228,7 @@
     -->
     <integer name="config_longPressOnHomeBehavior">2</integer>
 
+    <!-- Enable translucent status bar -->
+    <bool name="config_enableTranslucentDecor">true</bool>
+
 </resources>

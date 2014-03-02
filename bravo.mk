@@ -104,6 +104,10 @@ $(call inherit-product-if-exists, vendor/htc/bravo/bravo-vendor.mk)
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.dexopt-data-only=1
 
+# Enable translucent status bar
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.force_highendgfx=true
+
 # Torch
 PRODUCT_PACKAGES += \
     Torch
