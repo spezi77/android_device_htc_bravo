@@ -113,5 +113,5 @@ PRODUCT_PACKAGES += \
     Torch
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.cm.version=11.0-KitKANG-bravo \
-    ro.modversion=11.0-KitKANG-bravo
+    ro.cm.version=11.0-spezi77-bravo \
+    ro.modversion=11.0-spezi77-bravo
