@@ -77,4 +77,4 @@ BOARD_USES_LEGACY_RIL := true
 # Override in the CM way
 # Use old kernel toolchain.  GCC 4.6 may be the root cause of our modem
 # interface dying all the time.
-TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.7.4/bin/arm-eabi-
+TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.8.3/bin/arm-cortex_a8-linux-gnueabi-
