@@ -1,15 +1,13 @@
 import init.bravo.usb.rc
 
 on init
-    mkdir /storage 0050 system sdcard_r
+    export EXTERNAL_STORAGE /storage/sdcard0
     mkdir /mnt/media_rw/sdcard0 0700 media_rw media_rw
     mkdir /storage/sdcard0 0700 root root
 
 # for backwards compatibility
     symlink /storage/sdcard0 /sdcard
     symlink /storage/sdcard0 /mnt/sdcard
-
-    export EXTERNAL_STORAGE /storage/sdcard0
 
 on fs
 # mount mtd partitions
@@ -138,5 +136,20 @@ service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
 
 on property:dev.bootcomplete=1
     start qcom-post-boot
+
+    # KSM
+    write /sys/kernel/mm/ksm/pages_to_scan 100
+    write /sys/kernel/mm/ksm/sleep_millisecs 500
+
+    # VPN
+    mkdir /data/misc/vpn 0770 system vpn
+    chown system vpn /data/misc/vpn
+    mkdir /data/misc/vpn/profiles 0770 system vpn
+    chown system vpn /data/misc/vpn/profiles
+
+    # Allow system to have access to /dev/tun directory
+    mkdir /dev/tun 0770 system vpn
+    chown system vpn /dev/tun
+    chmod 0770 /dev/tun
 
 service dspcrashd /system/bin/dspcrashd
