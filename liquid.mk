@@ -1,15 +1,15 @@
 # Call this first so apn list is actually copied
-$(call inherit-product, vendor/omni/config/gsm.mk)
+$(call inherit-product, vendor/liquid/config/telephony.mk)
 
 $(call inherit-product, device/htc/bravo/full_bravo.mk)
 
 # Inherit some common cm stuff.
-$(call inherit-product, vendor/omni/config/common_full_phone.mk)
+$(call inherit-product, vendor/liquid/config/common_phone.mk)
 
 #
 # Setup device specific product configuration.
 #
-PRODUCT_NAME    := omni_bravo
+PRODUCT_NAME    := liquid_bravo
 PRODUCT_BRAND   := htc_wwe
 PRODUCT_DEVICE  := bravo
 PRODUCT_MODEL   := HTC Desire
@@ -20,6 +20,3 @@ PRODUCT_RELEASE_NAME := bravo
 # Bootanimation
 TARGET_SCREEN_HEIGHT := 800
 TARGET_SCREEN_WIDTH := 480
-
-# Use low fps boot animation for our device 
-USE_LOWFPS_BOOTANI := true
