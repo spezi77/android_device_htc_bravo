@@ -54,9 +54,11 @@ BOARD_USE_LEGACY_TOUCHSCREEN := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/usb_mass_storage/lun0/file
 BOARD_USE_LEGACY_TRACKPAD := true
 
-
 # Recovery
 TARGET_RECOVERY_FSTAB   := device/htc/bravo/fstab.bravo
+
+# TWRP
+DEVICE_RESOLUTION := 480x800
 
 # # cat /proc/mtd
 # dev:    size   erasesize  name
