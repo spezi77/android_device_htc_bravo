@@ -32,8 +32,6 @@ include device/htc/qsd8k-common/BoardConfigCommon.mk
 
 TARGET_BOOTLOADER_BOARD_NAME := bravo
 
-TARGET_RECOVERY_FSTAB := device/htc/bravo/fstab.bravo
-
 BOARD_KERNEL_CMDLINE := no_console_suspend=1 msmsdcc_sdioirq=1 wire.search_count=5
 BOARD_KERNEL_BASE := 0x20000000
 BOARD_KERNEL_NEW_PPPOX := true
@@ -55,6 +53,12 @@ BOARD_USE_LEGACY_TOUCHSCREEN := true
 # Hacks
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/usb_mass_storage/lun0/file
 BOARD_USE_LEGACY_TRACKPAD := true
+
+# Recovery
+TARGET_RECOVERY_FSTAB   := device/htc/bravo/fstab.bravo
+
+# TWRP
+DEVICE_RESOLUTION := 480x800
 
 # # cat /proc/mtd
 # dev:    size   erasesize  name
