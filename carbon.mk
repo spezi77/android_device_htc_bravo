@@ -1,6 +1,3 @@
-# Call this first so apn list is actually copied
-$(call inherit-product, vendor/carbon/config/common_gsm.mk)
-
 $(call inherit-product, device/htc/bravo/full_bravo.mk)
 
 # Inherit some common cm stuff.
