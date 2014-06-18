@@ -234,7 +234,7 @@
     <!-- If this is true, the screen will fade off. -->
     <bool name="config_animateScreenLights">false</bool>
     
-        <!-- Control the behavior when the user long presses the home button.
+    <!-- Control the behavior when the user long presses the home button.
             0 - Nothing
             1 - Recent apps dialog
             2 - Recent apps view in SystemUI
@@ -242,4 +242,9 @@
          policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
     -->
     <integer name="config_longPressOnHomeBehavior">1</integer>
+
+    <!-- Base "touch slop" value used by ViewConfiguration as a
+    movement threshold where scrolling should begin. -->
+    <dimen name="config_viewConfigurationTouchSlop">4dp</dimen>
+
 </resources>
