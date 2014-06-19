@@ -79,6 +79,5 @@ LEGACY_RIL := true
 BOARD_USES_LEGACY_RIL := true
 
 # Override in the CM way
-# Use old kernel toolchain.  GCC 4.6 may be the root cause of our modem
-# interface dying all the time.
-TARGET_KERNEL_CUSTOM_TOOLCHAIN := sm-arm-eabi-4.10/bin/arm-eabi-
+# Use linaro toolchain gcc 4.9 on kk
+TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-linux-linaro-4.9/bin/arm-eabi-
