@@ -75,4 +75,4 @@ LEGACY_RIL := true
 BOARD_USES_LEGACY_RIL := true
 
 # Override in the CM way
-TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-linux-linaro-4.9
+TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-linux-linaro-4.9/bin/arm-eabi-
