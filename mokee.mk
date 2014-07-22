@@ -1,15 +1,15 @@
 # Call this first so apn list is actually copied
-$(call inherit-product, vendor/cm/config/gsm.mk)
+$(call inherit-product, vendor/mk/config/gsm.mk)
 
 $(call inherit-product, device/htc/bravo/full_bravo.mk)
 
-# Inherit some common cm stuff.
-$(call inherit-product, vendor/cm/config/common_full_phone.mk)
+# Inherit some common mk stuff.
+$(call inherit-product, vendor/mk/config/common_full_phone.mk)
 
 #
 # Setup device specific product configuration.
 #
-PRODUCT_NAME    := cm_bravo
+PRODUCT_NAME    := mk_bravo
 PRODUCT_BRAND   := htc_wwe
 PRODUCT_DEVICE  := bravo
 PRODUCT_MODEL   := HTC Desire
@@ -20,3 +20,4 @@ PRODUCT_RELEASE_NAME := bravo
 # Bootanimation
 TARGET_SCREEN_HEIGHT := 800
 TARGET_SCREEN_WIDTH := 480
+TARGET_BOOTANIMATION_HALF_RES := true

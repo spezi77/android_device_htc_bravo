@@ -40,7 +40,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.ril.hsxpa=2 \
     ro.ril.def.agps.mode=2 \
     ro.ril.disable.power.collapse=0 \
-    windowsmgr.max_events_per_sec=150 \
     mobiledata.interfaces=rmnet0,rmnet1,rmnet2 \
     ro.media.dec.jpeg.memcap=20000000 \
     ro.opengles.version=131072 \
@@ -111,7 +110,3 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Torch
 PRODUCT_PACKAGES += \
     Torch
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.cm.version=11.0-KitKANG-bravo \
-    ro.modversion=11.0-KitKANG-bravo
