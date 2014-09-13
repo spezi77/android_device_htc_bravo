@@ -243,4 +243,13 @@
          config to 7. -->
     <integer name="config_deviceHardwareKeys">8</integer>
 
+    <!-- Base "touch slop" value used by ViewConfiguration as a
+    movement threshold where scrolling should begin. -->
+    <dimen name="config_viewConfigurationTouchSlop">4dp</dimen>
+
+    <!-- Flag indicating whether the surface flinger is inefficient
+    at performing a blur. Used by parts of the UI to turn off
+    the blur effect where it isn't worth the performance hit. -->
+    <bool name="config_sf_slowBlur">true</bool>
+
 </resources>
