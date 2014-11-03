@@ -52,9 +52,8 @@ TARGET_USE_KEYBOARD := international
 # Use legacy touchscreen
 BOARD_USE_LEGACY_TOUCHSCREEN := true
 
-# Hacks
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/usb_mass_storage/lun0/file
-#TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun0/file
+# Fix UMS on k3.0.x
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun0/file
 BOARD_USE_LEGACY_TRACKPAD := true
 
 # # cat /proc/mtd
