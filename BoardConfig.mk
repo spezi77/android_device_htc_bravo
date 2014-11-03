@@ -36,7 +36,7 @@ BOARD_KERNEL_CMDLINE := no_console_suspend=1 msmsdcc_sdioirq=1 wire.search_count
 BOARD_KERNEL_BASE := 0x20000000
 BOARD_KERNEL_NEW_PPPOX := true
 
-TARGET_KERNEL_CONFIG    := evervolv_bravo_defconfig
+TARGET_KERNEL_CONFIG    := bravo_defconfig
 
 # to enable the GPS HAL
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := bravo
@@ -50,8 +50,8 @@ TARGET_USE_KEYBOARD := international
 # Use legacy touchscreen
 BOARD_USE_LEGACY_TOUCHSCREEN := true
 
-# Hacks
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/usb_mass_storage/lun0/file
+# Fix UMS on k3.0.x
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun0/file
 BOARD_USE_LEGACY_TRACKPAD := true
 
 
