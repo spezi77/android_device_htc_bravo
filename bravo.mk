@@ -23,7 +23,7 @@
 
 DEVICE_PACKAGE_OVERLAYS := device/htc/bravo/overlay
 
-# Propreties
+# Properties
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.lcd_density=240 \
     rild.libpath=/system/lib/libhtc_ril.so \
