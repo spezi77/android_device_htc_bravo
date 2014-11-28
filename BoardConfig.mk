@@ -54,6 +54,15 @@ BOARD_USE_LEGACY_TOUCHSCREEN := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/usb_mass_storage/lun0/file
 BOARD_USE_LEGACY_TRACKPAD := true
 
+# Reduce font size
+EXTENDED_FONT_FOOTPRINT := false
+SMALLER_FONT_FOOTPRINT := true
+MINIMAL_FONT_FOOTPRINT := true
+
+# Remove packages
+REMOVE_PRODUCT_PACKAGES += Gallery2 Exchange2 LiveWallpapers Galaxy4 Camera2
+REMOVE_PRODUCT_PACKAGES += Email
+
 # Recovery
 TARGET_RECOVERY_FSTAB   := device/htc/bravo/fstab.bravo
 
