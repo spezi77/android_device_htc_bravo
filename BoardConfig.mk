@@ -53,6 +53,7 @@ BOARD_USE_LEGACY_TOUCHSCREEN := true
 # Hacks
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/usb_mass_storage/lun0/file
 BOARD_USE_LEGACY_TRACKPAD := true
+TARGET_NO_WIFI_HAL := true
 
 # Reduce font size
 EXTENDED_FONT_FOOTPRINT := false
