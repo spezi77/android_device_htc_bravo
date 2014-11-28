@@ -67,6 +67,7 @@ REMOVE_PRODUCT_PACKAGES += Gallery2 Exchange2 LiveWallpapers Galaxy4
 REMOVE_PRODUCT_PACKAGES += Email
 
 # Recovery
+TARGET_NO_RECOVERY := true
 TARGET_RECOVERY_FSTAB   := device/htc/bravo/fstab.bravo
 
 # TWRP
