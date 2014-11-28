@@ -61,9 +61,6 @@ BOARD_HAVE_PRE_KITKAT_AUDIO_POLICY_BLOB := true
 # Inform ART we have a single core
 TARGET_CPU_SMP := false
 
-# Fonts
-EXTENDED_FONT_FOOTPRINT := true
-
 # Enable dex-preoptimization to speed up first boot sequence
 ifeq ($(HOST_OS),linux)
   ifeq ($(TARGET_BUILD_VARIANT),userdebug)
@@ -73,6 +70,15 @@ ifeq ($(HOST_OS),linux)
   endif
 endif
 DONT_DEXPREOPT_PREBUILTS := true
+
+# Reduce font size
+EXTENDED_FONT_FOOTPRINT := false
+SMALLER_FONT_FOOTPRINT := true
+MINIMAL_FONT_FOOTPRINT := true
+
+# Remove packages
+REMOVE_PRODUCT_PACKAGES += Gallery2 Exchange2 LiveWallpapers Galaxy4 Camera2
+REMOVE_PRODUCT_PACKAGES += Email
 
 # Recovery
 TARGET_RECOVERY_FSTAB   := device/htc/bravo/fstab.bravo
