@@ -1,3 +1,4 @@
+import init.power.rc
 import init.bravo.usb.rc
 
 on init
