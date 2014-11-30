@@ -53,7 +53,8 @@ TARGET_USE_KEYBOARD := international
 BOARD_USE_LEGACY_TOUCHSCREEN := true
 
 # Hacks
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/usb_mass_storage/lun0/file
+#TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/usb_mass_storage/lun0/file
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun0/file
 BOARD_USE_LEGACY_TRACKPAD := true
 
 # # cat /proc/mtd
@@ -77,4 +78,4 @@ BOARD_USES_LEGACY_RIL := true
 # Override in the CM way
 # Use old kernel toolchain.  GCC 4.6 may be the root cause of our modem
 # interface dying all the time.
-TARGET_KERNEL_CUSTOM_TOOLCHAIN := sm-arm-eabi-4.10
+TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.10-sm
