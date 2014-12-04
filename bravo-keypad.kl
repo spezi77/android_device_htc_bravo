@@ -13,10 +13,10 @@
 # limitations under the License.
 
 key 102   HOME
-key 107   ENDCALL           WAKE_DROPPED
-key 114   VOLUME_DOWN       WAKE
-key 115   VOLUME_UP         WAKE
-key 116   POWER             WAKE_DROPPED
+key 107   ENDCALL
+key 114   VOLUME_DOWN
+key 115   VOLUME_UP
+key 116   POWER
 key 139   MENU
 key 158   BACK
 key 217   SEARCH
