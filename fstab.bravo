@@ -5,11 +5,11 @@
 ## Last updated: 2013-07-31
 
 #<label>                                       <mnt_point>            <type>          <mnt_flags and options>        <fs_mgr_flags>
-boot                                           /boot                  mtd             defaults                        defaults
-cache                                          /cache                 yaffs2          defaults                        defaults
-userdata                                       /data                  yaffs2          defaults                        defaults
-misc                                           /misc                  mtd             defaults                        defaults
-recovery                                       /recovery              mtd             defaults                        defaults
-system                                         /system                yaffs2          defaults                        defaults
+/dev/block/mtdblock2                           /boot                  mtd             defaults                        defaults
+/dev/block/mtdblock4                           /cache                 yaffs2          defaults                        defaults
+/dev/block/mtdblock5                           /data                  yaffs2          defaults                        defaults
+/dev/block/mtdblock0                           /misc                  mtd             defaults                        defaults
+/dev/block/mtdblock1                           /recovery              mtd             defaults                        defaults
+/dev/block/mtdblock3                           /system                yaffs2          defaults                        defaults
 
 /devices/platform/msm_sdcc.2/mmc_host/mmc1     auto                   vfat            defaults                        voldmanaged=sdcard0:auto,noemulatedsd
