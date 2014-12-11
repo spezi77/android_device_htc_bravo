@@ -82,5 +82,4 @@ BOARD_USES_LEGACY_RIL := true
 DEVICE_RESOLUTION := 480x800
 
 # Override in the CM way
-# Use linaro toolchain gcc 4.9 on kk
-TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-linux-linaro-4.9
+TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.8
