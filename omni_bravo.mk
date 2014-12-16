@@ -1,10 +1,10 @@
 # Call this first so apn list is actually copied
-$(call inherit-product, vendor/spezi/config/gsm.mk)
+$(call inherit-product, vendor/omni/config/gsm.mk)
 
 $(call inherit-product, device/htc/bravo/full_bravo.mk)
 
 # Inherit some common stuff.
-$(call inherit-product, vendor/omnii/config/common_full_phone.mk)
+$(call inherit-product, vendor/omni/config/common_full_phone.mk)
 
 #
 # Setup device specific product configuration.
