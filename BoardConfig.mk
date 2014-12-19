@@ -72,6 +72,7 @@ ifeq ($(HOST_OS),linux)
   endif
 endif
 DONT_DEXPREOPT_PREBUILTS := true
+MALLOC_IMPL := dlmalloc
 
 # Recovery
 TARGET_RECOVERY_FSTAB   := device/htc/bravo/fstab.bravo
