@@ -66,7 +66,7 @@ BOARD_HAVE_PRE_KITKAT_AUDIO_POLICY_BLOB := true
 # Inform ART we have a single core
 TARGET_CPU_SMP := false
 
-# Enable dex-preoptimization to speed up first boot sequence
+# ART
 ifeq ($(HOST_OS),linux)
   ifeq ($(TARGET_BUILD_VARIANT),userdebug)
     ifeq ($(WITH_DEXPREOPT),)
@@ -75,6 +75,7 @@ ifeq ($(HOST_OS),linux)
   endif
 endif
 DONT_DEXPREOPT_PREBUILTS := true
+MALLOC_IMPL := dlmalloc
 
 # Reduce font size
 EXTENDED_FONT_FOOTPRINT := true
