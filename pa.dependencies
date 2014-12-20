@@ -2,7 +2,7 @@
 	{
 		"repository": "android_kernel_htc_qsd8k",
 		"target_path": "kernel/htc/qsd8k",
-		"dep_type": "kernel"
+		"dep_type": "kernel",
 		"branch": "utopian-lp5.0"
 	},
 	{
@@ -14,19 +14,19 @@
 	{
 		"repository": "android_hardware_qcom_display-legacy",
 		"target_path": "hardware/qcom/display-legacy",
-		"dep_type": "hardware"
+		"dep_type": "hardware",
 		"branch": "lp5.0"
 	},
 	{
 		"repository": "android_hardware_qcom_media-legacy",
 		"target_path": "hardware/qcom/media-legacy",
-		"dep_type": "hardware"
+		"dep_type": "hardware",
 		"branch": "lp5.0"
 	},
 	{
 		"repository": "android_hardware_qcom_gps-legacy",
 		"target_path": "hardware/qcom/gps-legacy",
-		"dep_type": "hardware"
+		"dep_type": "hardware",
 		"branch": "lollipop"
 	}
 ]
