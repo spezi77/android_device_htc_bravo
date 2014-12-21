@@ -99,14 +99,6 @@ $(call inherit-product, device/htc/qsd8k-common/qsd8k.mk)
 # Also get non-open-source GSM-specific aspects if available
 $(call inherit-product-if-exists, vendor/htc/bravo/bravo-vendor.mk)
 
-# Don't put /dalvik-cache to /cache partition. (for CM)
-PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.dexopt-data-only=1
-
 # Enable translucent status bar
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.force_highendgfx=true
-
-# Torch
-PRODUCT_PACKAGES += \
-    Torch
