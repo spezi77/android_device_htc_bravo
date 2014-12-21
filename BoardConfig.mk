@@ -78,3 +78,8 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
+
+# Legacy Patches
+USE_SET_METADATA := false
+BOARD_USES_LEGACY_MMAP := true
+TARGET_QCOM_LEGACY_OMX := true
