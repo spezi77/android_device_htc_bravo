@@ -93,8 +93,5 @@ include device/qcom/sepolicy/sepolicy.mk
 LEGACY_RIL := true
 BOARD_USES_LEGACY_RIL := true
 
-# Set for Android 5.0 PA to solve "LIBART_IMG_HOST_BASE_ADDRESS"
-ANDROID_COMMON_BUILD_MK := true
-
 # Override in the CM way
 TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.8
