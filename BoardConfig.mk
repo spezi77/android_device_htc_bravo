@@ -93,5 +93,10 @@ include device/qcom/sepolicy/sepolicy.mk
 LEGACY_RIL := true
 BOARD_USES_LEGACY_RIL := true
 
+# Legacy Patches
+USE_SET_METADATA := false
+BOARD_USES_LEGACY_MMAP := true
+TARGET_QCOM_LEGACY_OMX := true
+
 # Override in the CM way
 TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.8
