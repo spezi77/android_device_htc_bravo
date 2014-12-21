@@ -32,7 +32,7 @@ include device/htc/qsd8k-common/BoardConfigCommon.mk
 
 TARGET_BOOTLOADER_BOARD_NAME := bravo
 
-BOARD_KERNEL_CMDLINE := no_console_suspend=1 msmsdcc_sdioirq=1 wire.search_count=5
+BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x20000000
 BOARD_KERNEL_NEW_PPPOX := true
 
@@ -85,6 +85,9 @@ BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x00500000
 BOARD_SYSTEMIMAGE_PARTITION_SIZE :=  362144000 # 0x09100000
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 154140672 # 0x093a0000
 BOARD_FLASH_BLOCK_SIZE := 131072
+
+# SELinux
+include device/qcom/sepolicy/sepolicy.mk
 
 # Legacy ril (for CM)
 LEGACY_RIL := true
