@@ -56,7 +56,6 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/usb_mass_storage/lun0/f
 BOARD_USE_LEGACY_TRACKPAD := true
 TARGET_NO_WIFI_HAL := true
 TARGET_NO_NETD_AF_INET := true
-TARGET_PROVIDES_INIT_RC := true
 
 # Reduce font size
 EXTENDED_FONT_FOOTPRINT := false
