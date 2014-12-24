@@ -99,5 +99,8 @@ USE_SET_METADATA := false
 BOARD_USES_LEGACY_MMAP := true
 TARGET_QCOM_LEGACY_OMX := true
 
+# Don't generate block mode update zips
+BLOCK_BASED_OTA := false
+
 # Override in the CM way
 TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.8
