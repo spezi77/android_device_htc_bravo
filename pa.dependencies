@@ -6,7 +6,7 @@
 		"branch": "utopian-lp5.0"
 	},
 	{
-		"repository": "spezi77/android_hardware_qcom_audio-caf",
+		"repository": "spezi77/android_hardware_qcom_audio-legacy",
 		"target_path": "hardware/qcom/audio-legacy",
 		"dep_type": "hardware",
 		"branch": "lp5.0"
