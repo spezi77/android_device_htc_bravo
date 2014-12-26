@@ -36,9 +36,9 @@
 		"branch": "lp5.0"
 	},
 	{
-		"repository": "Evervolv/android_hardware_qcom_gps-legacy",
+		"repository": "spezi77/android_hardware_qcom_gps-legacy",
 		"target_path": "hardware/qcom/gps-legacy",
 		"dep_type": "hardware",
-		"branch": "lollipop"
+		"branch": "lp5.0"
 	}
 ]
