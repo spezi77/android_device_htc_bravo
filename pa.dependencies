@@ -2,43 +2,36 @@
        {
                 "repository": "spezi77/android_device_htc_bravo",
                 "target_path": "device/htc/bravo",
-                "dep_type": "device",
-		"branch": "pa-lp"
+                "dep_type": "device"
         },
        {
                 "repository": "spezi77/android_device_htc_qsd8k-common",
                 "target_path": "device/htc/qsd8k-common",
-                "dep_type": "device",
-		"branch": "pa-lp"
+                "dep_type": "device"
         },
 	{
 		"repository": "spezi77/android_kernel_htc_qsd8k",
 		"target_path": "kernel/htc/qsd8k",
-		"dep_type": "kernel",
-		"branch": "utopian-lp5.0"
+		"dep_type": "kernel"
 	},
 	{
 		"repository": "spezi77/android_hardware_qcom_audio-legacy",
 		"target_path": "hardware/qcom/audio-legacy",
-		"dep_type": "hardware",
-		"branch": "lp5.0"
+		"dep_type": "hardware"
 	},
 	{
 		"repository": "spezi77/android_hardware_qcom_display-legacy",
 		"target_path": "hardware/qcom/display-legacy",
-		"dep_type": "hardware",
-		"branch": "lp5.0"
+		"dep_type": "hardware"
 	},
 	{
 		"repository": "spezi77/android_hardware_qcom_media-legacy",
 		"target_path": "hardware/qcom/media-legacy",
-		"dep_type": "hardware",
-		"branch": "lp5.0"
+		"dep_type": "hardware"
 	},
 	{
 		"repository": "spezi77/android_hardware_qcom_gps-legacy",
 		"target_path": "hardware/qcom/gps-legacy",
-		"dep_type": "hardware",
-		"branch": "lp5.0"
+		"dep_type": "hardware"
 	}
 ]
