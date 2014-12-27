@@ -64,7 +64,7 @@ MINIMAL_FONT_FOOTPRINT := true
 
 # Remove packages
 REMOVE_PRODUCT_PACKAGES += Gallery2 Exchange2 LiveWallpapers Galaxy4
-REMOVE_PRODUCT_PACKAGES += Email OpenWnn
+REMOVE_PRODUCT_PACKAGES += Email OpenWnn Camera2
 
 # Recovery
 TARGET_RECOVERY_FSTAB   := device/htc/bravo/fstab.bravo
