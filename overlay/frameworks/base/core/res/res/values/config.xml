@@ -236,8 +236,4 @@
          policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
     -->
     <integer name="config_longPressOnHomeBehavior">1</integer>
-
-    <!-- Enable translucent status bar -->
-    <bool name="config_enableTranslucentDecor">true</bool>
-
 </resources>
