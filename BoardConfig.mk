@@ -23,6 +23,7 @@
 # WARNING: This line must come *before* including the proprietary
 # variant, so that it gets overwritten by the parent (which goes
 # against the traditional rules of inheritance).
+
 USE_CAMERA_STUB := true
 
 # inherit from the proprietary version
@@ -89,9 +90,12 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
 
+# Radio
+BOARD_PROVIDES_LIBRIL := true
+
 # Legacy ril (for CM)
-LEGACY_RIL := true
-BOARD_USES_LEGACY_RIL := true
+#LEGACY_RIL := true
+#BOARD_USES_LEGACY_RIL := true
 
 # Legacy Patches
 USE_SET_METADATA := false
