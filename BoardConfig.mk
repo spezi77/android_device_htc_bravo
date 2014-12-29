@@ -124,7 +124,7 @@ BOARD_PROVIDES_LIBRIL := true
 BOARD_RIL_CLASS := ../../../device/htc/bravo/ril
 
 # Legacy ril (for CM)
-#LEGACY_RIL := true
+LEGACY_RIL := true
 #BOARD_USES_LEGACY_RIL := true
 
 # Legacy Patches
