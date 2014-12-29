@@ -121,6 +121,7 @@ BOARD_SEPOLICY_UNION += \
 
 # Radio
 BOARD_PROVIDES_LIBRIL := true
+BOARD_RIL_CLASS := ../../../device/htc/bravo/ril
 
 # Legacy ril (for CM)
 #LEGACY_RIL := true
