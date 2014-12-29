@@ -80,6 +80,10 @@ TARGET_USERIMAGES_USE_EXT4 := true
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
 
+# Legacy ril (for CM)
+LEGACY_RIL := true
+BOARD_USES_LEGACY_RIL := true
+
 # Legacy Patches
 USE_SET_METADATA := false
 BOARD_USES_LEGACY_MMAP := true
