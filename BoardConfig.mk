@@ -88,6 +88,7 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE :=  362144000 # 0x09100000
 BOARD_FLASH_BLOCK_SIZE := 131072
 
 # SELinux
+include device/qcom/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += \
         device/htc/bravo/sepolicy
 
@@ -96,28 +97,30 @@ BOARD_SEPOLICY_UNION += \
 	radio.te \
 	file_contexts \
 	te_macros \
-	device.te \
 	dhcp.te \
+	qmiproxy.te \
+	secril.te \
+	servicemanager.te \
+	sysinit.te \
+	system_server.te \
+	vold.te \
+	wpa.te \
+	zygote.te
+	
+BOARD_SEPOLICY_IGNORE += \
+	device.te \
 	domain.te \
 	file.te \
 	init.te \
 	kickstart.te \
 	mediaserver.te \
 	netmgrd.te \
-	qmiproxy.te \
 	qmuxd.te \
 	rild.te \
-	secril.te \
-	servicemanager.te \
-	sysinit.te \
 	system.te \
-	system_server.te \
 	time_daemon.te \
 	ueventd.te \
-	vold.te \
-	wpa.te \
-	wpa_supplicant.te \
-	zygote.te
+	wpa_supplicant.te
 
 # Radio
 BOARD_PROVIDES_LIBRIL := true
