@@ -37,7 +37,7 @@ BOARD_KERNEL_CMDLINE := no_console_suspend=1 msmsdcc_sdioirq=1 wire.search_count
 BOARD_KERNEL_BASE := 0x20000000
 BOARD_KERNEL_NEW_PPPOX := true
 
-TARGET_KERNEL_CONFIG    := evervolv_bravo_defconfig
+TARGET_KERNEL_CONFIG    := bravo_defconfig
 TARGET_RAMDISK_COMPRESSION := xz --check=crc32 --arm --lzma2=dict=1MiB
 
 # to enable the GPS HAL
@@ -53,7 +53,8 @@ TARGET_USE_KEYBOARD := international
 BOARD_USE_LEGACY_TOUCHSCREEN := true
 
 # Hacks
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/usb_mass_storage/lun0/file
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun0/file
+#TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/usb_mass_storage/lun0/file
 BOARD_USE_LEGACY_TRACKPAD := true
 TARGET_NO_WIFI_HAL := true
 TARGET_NO_NETD_AF_INET := true
@@ -86,6 +87,9 @@ BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x00500000
 BOARD_SYSTEMIMAGE_PARTITION_SIZE :=  362144000 # 0x09100000
 #BOARD_USERDATAIMAGE_PARTITION_SIZE := 154140672 # 0x093a0000
 BOARD_FLASH_BLOCK_SIZE := 131072
+
+# Header
+TARGET_SPECIFIC_HEADER_PATH := device/htc/bravo/include/
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
