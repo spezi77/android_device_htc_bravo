@@ -138,6 +138,7 @@ LEGACY_RIL := true
 USE_SET_METADATA := false
 BOARD_USES_LEGACY_MMAP := true
 TARGET_QCOM_LEGACY_OMX := true
+QCOM_NO_SECURE_PLAYBACK := true
 
 # Don't generate block mode update zips
 BLOCK_BASED_OTA := false
