@@ -90,38 +90,6 @@ TARGET_USERIMAGES_USE_EXT4 := true
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
-BOARD_SEPOLICY_DIRS += \
-        device/htc/bravo/sepolicy
-
-BOARD_SEPOLICY_UNION += \
-	bluetooth.te \
-	radio.te \
-	file_contexts \
-	te_macros \
-	dhcp.te \
-	qmiproxy.te \
-	secril.te \
-	servicemanager.te \
-	sysinit.te \
-	system_server.te \
-	vold.te \
-	wpa.te \
-	zygote.te
-	
-BOARD_SEPOLICY_IGNORE += \
-	device.te \
-	domain.te \
-	file.te \
-	init.te \
-	kickstart.te \
-	mediaserver.te \
-	netmgrd.te \
-	qmuxd.te \
-	rild.te \
-	system.te \
-	time_daemon.te \
-	ueventd.te \
-	wpa_supplicant.te
 
 # Radio
 BOARD_PROVIDES_LIBRIL := true
