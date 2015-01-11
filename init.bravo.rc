@@ -11,7 +11,9 @@ on init
     symlink /storage/sdcard0 /mnt/sdcard
 
 on fs
-# mount mtd partitions
+    umount /system
+    umount /data
+    # mount all partitions
     mount_all ./fstab.bravo
 
 on post-fs-data
