@@ -95,12 +95,12 @@ TARGET_USERIMAGES_USE_EXT4 := true
 include device/qcom/sepolicy/sepolicy.mk
 
 # Radio
-BOARD_PROVIDES_LIBRIL := true
-BOARD_RIL_CLASS := ../../../device/htc/bravo/ril
+#BOARD_PROVIDES_LIBRIL := true
+#BOARD_RIL_CLASS := ../../../device/htc/bravo/ril
 
 # Legacy ril (for CM)
 LEGACY_RIL := true
-#BOARD_USES_LEGACY_RIL := true
+BOARD_USES_LEGACY_RIL := true
 
 # Legacy Patches
 USE_SET_METADATA := false
