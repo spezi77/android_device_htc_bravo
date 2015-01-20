@@ -22,19 +22,7 @@ on post-fs-data
     mkdir /data/dalvik-cache/arm 0771 system system
 
     # wifi
-    #mkdir /system/etc/wifi 0770 wifi wifi
-    #chmod 0770 /system/etc/wifi
-    
-    # wpa_supplicant control socket for android wifi.c (android private socket) 
-    chown wifi wifi /data/misc/wifi
-    chown wifi wifi /data/misc/wifi/wpa_supplicant.conf 
-    symlink /data/misc/wifi/wpa_supplicant /data/system/wpa_supplicant
-    symlink /dev/socket/wpa_wlan0 /data/system/wpa_supplicant/wlan0
     chown dhcp dhcp /data/misc/dhcp
-    # wpa supplicant symlink
-    symlink /data/misc/wifi/wpa_supplicant /system/etc/wifi/wpa_supplicant
-    symlink /data/misc/wifi/wpa_supplicant.conf /system/etc/wifi/wpa_supplicant.conf
-    chown wifi wifi /system/etc/wifi/wpa_supplicant.conf 
 
 on boot
     mount debugfs /sys/kernel/debug /sys/kernel/debug
