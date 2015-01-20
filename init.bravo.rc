@@ -13,7 +13,9 @@ on init
     export EXTERNAL_STORAGE /storage/sdcard0
 
 on fs
-# mount mtd partitions
+    # sd cache
+    write /sys/devices/virtual/bdi/179:0/read_ahead_kb 1024
+    # mount mtd partitions
     mount_all ./fstab.bravo
 
 on post-fs-data
