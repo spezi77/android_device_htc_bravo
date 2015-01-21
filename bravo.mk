@@ -61,6 +61,14 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 # Packages required for bravo
 #
 
+# Wifi
+PRODUCT_PACKAGES += \
+    dhcpcd.conf \
+    hostapd \
+    hostapd.conf \
+    wpa_supplicant \
+    wpa_supplicant.conf
+
 # Sensors
 PRODUCT_PACKAGES += \
     gps.bravo \
