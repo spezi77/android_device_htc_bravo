@@ -63,10 +63,6 @@ EXTENDED_FONT_FOOTPRINT := false
 SMALLER_FONT_FOOTPRINT := true
 MINIMAL_FONT_FOOTPRINT := true
 
-# Remove packages
-REMOVE_PRODUCT_PACKAGES += Gallery2 Exchange2 LiveWallpapers Galaxy4
-REMOVE_PRODUCT_PACKAGES += Email OpenWnn Camera2
-
 # Enable dex-preoptimization to speed up first boot sequence
 ifeq ($(HOST_OS),linux)
   ifeq ($(TARGET_BUILD_VARIANT),userdebug)
