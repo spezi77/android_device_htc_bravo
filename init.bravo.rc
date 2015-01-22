@@ -22,6 +22,10 @@ on post-fs-data
     mkdir /data/dalvik-cache/arm 0771 system system
 
     # wifi
+    mkdir /data/misc/wifi 0770 wifi wifi
+    mkdir /data/misc/wifi/sockets 0770 wifi wifi
+    mkdir /data/misc/wifi/wpa_supplicant 0770 wifi wifi
+    mkdir /data/misc/dhcp 0770 dhcp dhcp
     chown dhcp dhcp /data/misc/dhcp
 
 on boot
@@ -141,6 +145,12 @@ on property:dev.bootcomplete=1
     # KSM
     write /sys/kernel/mm/ksm/pages_to_scan 100
     write /sys/kernel/mm/ksm/sleep_millisecs 500
+
+    # VPN
+    mkdir /data/misc/vpn 0770 system vpn
+    chown system vpn /data/misc/vpn
+    mkdir /data/misc/vpn/profiles 0770 system vpn
+    chown system vpn /data/misc/vpn/profiles
 
     # Allow system to have access to /dev/tun directory
     mkdir /dev/tun 0770 system vpn
