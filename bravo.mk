@@ -61,6 +61,18 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 # Packages required for bravo
 #
 
+# Wifi
+PRODUCT_PACKAGES += \
+    dhcpcd.conf \
+    hostapd \
+    wpa_supplicant \
+    wpa_supplicant.conf \
+    libwpa_client \
+    libnetcmdiface
+    
+PRODUCT_COPY_FILES += \
+    device/htc/bravo/prebuilt/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
+
 # Sensors
 PRODUCT_PACKAGES += \
     gps.bravo \
