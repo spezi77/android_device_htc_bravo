@@ -67,7 +67,10 @@ PRODUCT_PACKAGES += \
     hostapd \
     hostapd.conf \
     wpa_supplicant \
-    wpa_supplicant.conf
+    wpa_supplicant.conf \
+    crda \
+    regulatory.bin \
+    calibrator
 
 # Sensors
 PRODUCT_PACKAGES += \
