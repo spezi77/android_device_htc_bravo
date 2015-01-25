@@ -76,6 +76,15 @@ on boot
     setprop ro.ril.fast.dormancy.rule 1
     setprop ro.ril.fd.scron.timeout 4
     setprop ro.ril.fd.scroff.timeout 3
+    
+    # KSM
+    write /sys/kernel/mm/ksm/pages_to_scan 100
+    write /sys/kernel/mm/ksm/sleep_millisecs 500
+
+    # Allow system to have access to /dev/tun directory
+    mkdir /dev/tun 0770 system vpn
+    chown system vpn /dev/tun
+    chmod 0770 /dev/tun
 
    #sdcard daemon
 service fuse_sdcard0 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard0 /storage/sdcard0
@@ -142,20 +151,5 @@ service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
 
 on property:dev.bootcomplete=1
     start qcom-post-boot
-
-    # KSM
-    write /sys/kernel/mm/ksm/pages_to_scan 100
-    write /sys/kernel/mm/ksm/sleep_millisecs 500
-
-    # VPN
-    mkdir /data/misc/vpn 0770 system vpn
-    chown system vpn /data/misc/vpn
-    mkdir /data/misc/vpn/profiles 0770 system vpn
-    chown system vpn /data/misc/vpn/profiles
-
-    # Allow system to have access to /dev/tun directory
-    mkdir /dev/tun 0770 system vpn
-    chown system vpn /dev/tun
-    chmod 0770 /dev/tun
 
 service dspcrashd /system/bin/dspcrashd
