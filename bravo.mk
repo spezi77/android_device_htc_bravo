@@ -68,6 +68,7 @@ PRODUCT_PACKAGES += \
     hostapd.conf \
     wpa_supplicant \
     wpa_supplicant.conf \
+    libwpa_client \
     crda \
     regulatory.bin \
     calibrator
