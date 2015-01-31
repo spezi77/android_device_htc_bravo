@@ -57,6 +57,9 @@ BOARD_USE_LEGACY_TRACKPAD := true
 BOARD_NO_WIFI_HAL := true
 TARGET_NO_NETD_AF_INET := true
 
+# Fonts
+EXTENDED_FONT_FOOTPRINT := true
+
 # Enable dex-preoptimization to speed up first boot sequence
 ifeq ($(HOST_OS),linux)
   ifeq ($(TARGET_BUILD_VARIANT),userdebug)
