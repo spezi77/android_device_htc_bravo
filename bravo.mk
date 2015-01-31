@@ -69,6 +69,7 @@ PRODUCT_PACKAGES += \
     wpa_supplicant \
     wpa_supplicant.conf \
     libwpa_client \
+    libnetcmdiface \
     crda \
     regulatory.bin \
     calibrator
