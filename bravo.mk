@@ -110,6 +110,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/htc/bravo/media_profiles.xml:system/etc/media_profiles.xml
 
+# Override CM-mod-version
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.cm.version=12.0-lollipop-bravo \
+    ro.modversion=12.0-lollipop-bravo
+
 # Common qsd8k stuff
 $(call inherit-product, device/htc/qsd8k-common/qsd8k.mk)
 
