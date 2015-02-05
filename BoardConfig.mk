@@ -57,6 +57,9 @@ BOARD_USE_LEGACY_TRACKPAD := true
 BOARD_NO_WIFI_HAL := true
 TARGET_NO_NETD_AF_INET := true
 
+# Inform ART we have a single core
+TARGET_CPU_SMP := false
+
 # Fonts
 EXTENDED_FONT_FOOTPRINT := true
 
