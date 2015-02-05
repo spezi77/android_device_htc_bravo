@@ -54,6 +54,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Set usb type
 ADDITIONAL_DEFAULT_PROPERTIES += \
+    persist.sys.ums=1 \
     persist.sys.usb.config=mass_storage \
     persist.service.adb.enable=1
 
