@@ -66,14 +66,10 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 PRODUCT_PACKAGES += \
     dhcpcd.conf \
     hostapd \
-    hostapd.conf \
     wpa_supplicant \
     wpa_supplicant.conf \
     libwpa_client \
-    libnetcmdiface \
-    crda \
-    regulatory.bin \
-    calibrator
+    libnetcmdiface
     
 PRODUCT_COPY_FILES += \
     device/htc/bravo/prebuilt/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf 
