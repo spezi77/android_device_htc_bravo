@@ -17,9 +17,11 @@ on fs
     mount_all ./fstab.bravo
 
 on post-fs-data
-    # create dalvik-cache, so as to enforce our permissions
-    mkdir /data/dalvik-cache 0771 root root
-    mkdir /data/dalvik-cache/arm 0771 system system
+    # create dalvik-cache on internal data partition instead on /data to gain better performance 
+    mkdir /dataint/dalvik-cache 0771 root root
+    mkdir /dataint/dalvik-cache/arm 0771 system system
+    symlink /dataint/dalvik-cache /data/dalvik-cache
+    symlink /dataint/dalvik-cache/arm /data/dalvik-cache/arm
 
     # wifi
     mkdir /data/misc/wifi 0770 wifi wifi

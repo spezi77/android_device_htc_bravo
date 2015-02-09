@@ -2,13 +2,15 @@
 #
 ## Matthias (spezi7713@gmail.com)
 #
-## Last updated: 2015-01-31
+## Last updated: 2015-02-09
 
-#<src>									<mnt_point>		<type>	<mnt_flags and options>											<fs_mgr_flags>
-boot										/boot			mtd		defaults														defaults
-misc										/misc			mtd		defaults														defaults
-recovery									/recovery			mtd		defaults														defaults
-/dev/block/mmcblk0p2						/system			ext4		noatime,barrier=0												wait
-/dev/block/mmcblk0p3						/data			ext4		noatime,nosuid,nodev,barrier=0,data=ordered,noauto_da_alloc,errors=panic	wait,check,encryptable=footer
+#<src>						<mnt_point>	<type>	<mnt_flags and options>		<fs_mgr_flags>
+boot						/boot		mtd	defaults			defaults
+misc						/misc		mtd	defaults			defaults
+recovery					/recovery	mtd	defaults			defaults
+/dev/block/mmcblk0p2				/system		ext4	noatime,barrier=0		wait
+/dev/block/mmcblk0p3				/data		ext4	noatime,nosuid,nodev,barrier=0	wait,check,encryptable=footer
+/dev/block/mtdblock5				/dataint	yaffs2	defaults			defaults
 
-/devices/platform/msm_sdcc.2/mmc_host/mmc1*	auto				auto		defaults														voldmanaged=sdcard0:auto,noemulatedsd
+/devices/platform/msm_sdcc.2/mmc_host/mmc1*	auto		auto	defaults			voldmanaged=sdcard0:auto,noemulatedsd
+
