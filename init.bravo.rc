@@ -12,7 +12,7 @@ on init
 
 on fs
     # sd cache
-    write /sys/devices/virtual/bdi/179:0/read_ahead_kb 2048
+    write /sys/devices/virtual/bdi/179:0/read_ahead_kb 1024
     # mount all partitions
     mount_all ./fstab.bravo
 
