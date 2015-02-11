@@ -52,6 +52,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.ril.config=signalstrengthgsm,apptypesim \
     ro.vold.umsdirtyratio=20
 
+# Disable bootanimation sound
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.silent=1
+
 # Set usb type
 ADDITIONAL_DEFAULT_PROPERTIES += \
     persist.sys.ums=1 \
