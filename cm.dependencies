@@ -3,7 +3,7 @@
 		"repository": "spezi77/android_kernel_htc_qsd8k",
 		"target_path": "kernel/htc/qsd8k",
 		"dep_type": "kernel",
-		"branch": "lp-selinux"
+		"branch": "lollipop"
 	},
 	{
 		"repository": "spezi77/android_hardware_qcom_audio-legacy",
