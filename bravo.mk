@@ -56,6 +56,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_COPY_FILES += \
     device/htc/bravo/prebuilt/camera.vendor.qsd8k.so:system/lib/hw/camera.vendor.qsd8k.so
 
+# Tweaks
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.ksm.default=1
+
 # Disable bootanimation sound
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.silent=1
