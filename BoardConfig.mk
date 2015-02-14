@@ -53,9 +53,10 @@ BOARD_USE_LEGACY_TOUCHSCREEN := true
 
 # Hacks
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/usb_mass_storage/lun0/file
+TARGET_NO_NETD_AF_INET := true
 BOARD_USE_LEGACY_TRACKPAD := true
 BOARD_NO_WIFI_HAL := true
-TARGET_NO_NETD_AF_INET := true
+BOARD_HAVE_PRE_KITKAT_AUDIO_POLICY_BLOB := true
 
 # Inform ART we have a single core
 TARGET_CPU_SMP := false
