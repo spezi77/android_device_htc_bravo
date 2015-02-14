@@ -76,11 +76,13 @@ DONT_DEXPREOPT_PREBUILTS := true
 # Recovery
 TARGET_RECOVERY_FSTAB   := device/htc/bravo/fstab.bravo
 
-#TWRP Flags
+# TWRP Flags
 DEVICE_RESOLUTION := 480x800
-TW_EXCLUDE_SU := true
 BOARD_HAS_NO_REAL_SDCARD := true
+TW_EXCLUDE_SU := true
 TW_EXCLUDE_ENCRYPTED_BACKUPS := true
+TW_NO_SCREEN_BLANK := true
+TW_USE_TOOLBOX := true
 
 # # cat /proc/mtd
 # dev:    size   erasesize  name
