@@ -52,6 +52,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.ril.config=signalstrengthgsm,apptypesim,fakeiccid \
     ro.vold.umsdirtyratio=20
 
+# Tweaks
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.ksm.default=1
+
 # Disable bootanimation sound
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.silent=1
