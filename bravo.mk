@@ -52,6 +52,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 #    ro.telephony.ril_class=HtcLegacyRIL \
     ro.vold.umsdirtyratio=20
 
+# Camera
+PRODUCT_COPY_FILES += \
+    device/htc/bravo/prebuilt/camera.vendor.qsd8k.so:system/lib/hw/camera.vendor.qsd8k.so
+
 # Disable bootanimation sound
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.silent=1
