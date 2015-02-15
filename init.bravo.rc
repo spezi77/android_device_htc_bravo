@@ -19,7 +19,7 @@ on fs
     mount_all ./fstab.bravo
 
 on post-fs-data
-    # create dalvik-cache on internal data partition instead on /data to gain better performance 
+    # create dalvik-cache on NAND by using a symlink from /data to /dataint which is our internal data partition
     mkdir /dataint/dalvik-cache 0771 root root
     mkdir /dataint/dalvik-cache/arm 0771 system system
     symlink /dataint/dalvik-cache /data/dalvik-cache
