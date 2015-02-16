@@ -104,6 +104,10 @@ on boot
     setprop net.tcp.buffersize.umts 6144,87380,393216,6144,32768,283008
     setprop net.tcp.buffersize.edge 4096,32768,220416,4096,32768,110208
     setprop net.tcp.buffersize.gprs 4096,16384,32768,4096,11680,16384
+    
+    # Set Google DNS
+    setprop net.dns1 8.8.8.8
+    setprop net.dns2 8.8.4.4
 
     # To prevent out of order acknowledgements from making
     # connection tracking to treat them as not belonging to
