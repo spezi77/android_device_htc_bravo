@@ -84,23 +84,28 @@ on boot
     
     # Network tweaks
     write /proc/sys/net/ipv4/tcp_fin_timeout 30
+    write /proc/sys/net/ipv4/tcp_keepalive_probes 5
     write /proc/sys/net/ipv4/tcp_keepalive_intvl 30
     write /proc/sys/net/ipv4/tcp_timestamps 1
     write /proc/sys/net/ipv4/tcp_keepalive_time 1200
-    write /proc/sys/net/core/rmem_max 524288
-    write /proc/sys/net/core/wmem_max 524288
+    write /proc/sys/net/core/rmem_max 404480
+    write /proc/sys/net/core/wmem_max 404480
+    write /proc/sys/net/core/rmem_default 256960
+    write /proc/sys/net/core/wmem_default 256960
     write /proc/sys/net/ipv4/tcp_tw_reuse 1
+    write /proc/sys/net/ipv4/tcp_tw_recycle 1
+    write /proc/sys/net/ipv4/tcp_sack 1
     write /proc/sys/net/ipv4/tcp_window_scaling 1
-    write /proc/sys/net/ipv4/tcp_mem "8192 87380 524288"
+    write /proc/sys/net/ipv4/tcp_mem "8192 87380 404480"
     
     # The next two settings will be overwritten every time
     # the network type switches (wifi <-> umts etc.)
     # so we start with wifi values to ensure best
     # performance after boot.
-    write /proc/sys/net/ipv4/tcp_rmem "8192 87380 524288"
+    write /proc/sys/net/ipv4/tcp_rmem "4096 87380 404480"
     write /proc/sys/net/ipv4/tcp_wmem "8192 87380 393216"
-    setprop net.tcp.buffersize.wifi 8192,87380,524288,8192,87380,524288
-    setprop net.tcp.buffersize.hsdpa 8192,87380,524288,8192,65536,393216
+    setprop net.tcp.buffersize.wifi 8192,87380,404480,8192,87380,404480
+    setprop net.tcp.buffersize.hsdpa 8192,87380,404480,8192,65536,393216
     setprop net.tcp.buffersize.umts 6144,87380,393216,6144,32768,283008
     setprop net.tcp.buffersize.edge 4096,32768,220416,4096,32768,110208
     setprop net.tcp.buffersize.gprs 4096,16384,32768,4096,11680,16384
