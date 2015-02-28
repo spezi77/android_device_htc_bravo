@@ -126,6 +126,20 @@ $(call inherit-product, device/htc/qsd8k-common/qsd8k.mk)
 # Also get non-open-source GSM-specific aspects if available
 $(call inherit-product-if-exists, vendor/htc/bravo/bravo-vendor.mk)
 
+# Workaround
+PRODUCT_COPY_FILES += \
+    device/htc/bravo/prebuilt/libgenlock.so:system/lib/libgenlock.so \
+    device/htc/bravo/prebuilt/libhwcexternal.so:system/lib/libhwcexternal.so \
+    device/htc/bravo/prebuilt/libhwcservice.so:system/lib/libhwcservice.so \
+    device/htc/bravo/prebuilt/libmemalloc.so:system/lib/libmemalloc.so \
+    device/htc/bravo/prebuilt/liboverlay.so:system/lib/liboverlay.so \
+    device/htc/bravo/prebuilt/libqdutils.so:system/lib/libqdutils.so \
+    device/htc/bravo/prebuilt/hw/audio.primary.qsd8k.so:system/lib/hw/audio.primary.qsd8k.so \
+    device/htc/bravo/prebuilt/hw/copybit.qsd8k.so:system/lib/hw/copybit.qsd8k.so \
+    device/htc/bravo/prebuilt/hw/gralloc.qsd8k.so:system/lib/hw/gralloc.qsd8k.so \
+    device/htc/bravo/prebuilt/hw/hwcomposer.qsd8k.so:system/lib/hw/hwcomposer.qsd8k.so \
+    device/htc/bravo/prebuilt/hw/memtrack.qsd8k.so:system/lib/hw/memtrack.qsd8k.so
+
 # Enable translucent status bar
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.force_highendgfx=true
