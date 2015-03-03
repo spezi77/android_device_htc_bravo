@@ -112,5 +112,5 @@ USE_SET_METADATA := false
 BOARD_USES_LEGACY_MMAP := true
 TARGET_QCOM_LEGACY_OMX := true
 
-# Use custom toolchain gcc 4.9
-TARGET_GCC_VERSION_ARM := 4.9
+# Kernel target toolchain
+TARGET_GCC_VERSION_ARM := 4.8
