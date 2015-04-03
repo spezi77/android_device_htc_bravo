@@ -23,7 +23,12 @@
 # WARNING: This line must come *before* including the proprietary
 # variant, so that it gets overwritten by the parent (which goes
 # against the traditional rules of inheritance).
+
+# Camera
 USE_CAMERA_STUB := false
+ifeq ($(USE_CAMERA_STUB),false)
+BOARD_CAMERA_LIBRARIES := libcamera
+endif
 
 # inherit from the proprietary version
 -include vendor/htc/bravo/BoardConfigVendor.mk
