@@ -121,7 +121,6 @@ BOARD_USES_LEGACY_RIL := true
 # Legacy Patches
 USE_SET_METADATA := false
 BOARD_USES_LEGACY_MMAP := true
-TARGET_QCOM_LEGACY_OMX := true
 
 # Kernel target toolchain
 TARGET_GCC_VERSION_ARM := 4.8
