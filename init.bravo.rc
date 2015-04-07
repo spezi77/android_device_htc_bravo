@@ -6,24 +6,32 @@ on init
     mkdir /mnt/media_rw/sdcard0 0700 media_rw media_rw
     mkdir /storage/sdcard0 0700 root root
 
-# for backwards compatibility
+    # for backwards compatibility
     symlink /storage/sdcard0 /sdcard
     symlink /storage/sdcard0 /mnt/sdcard
-
+    
+    # for mount system from loop file on nand userdata
+    mkdir /mnt/sdcard2 0000 system system
     export EXTERNAL_STORAGE /storage/sdcard0
 
 on fs
     # sd cache
     write /sys/devices/virtual/bdi/179:0/read_ahead_kb 1024
+    
+    # mount system from a loop file on nand userdata
+    mount yaffs2 mtd@system /mnt/sdcard2
+    mount ext4 loop@/mnt/sdcard2/system.img /system
+    
     # mount mtd partitions
     mount_all ./fstab.bravo
+    
+    # mount cache on nand partition
+    mount yaffs2 mtd@cache /cache nosuid nodev
 
 on post-fs-data
-    # create dalvik-cache on NAND by using a symlink from /data to /dataint which is our internal data partition
-    mkdir /dataint/dalvik-cache 0771 root root
-    mkdir /dataint/dalvik-cache/arm 0771 system system
-    symlink /dataint/dalvik-cache /data/dalvik-cache
-    symlink /dataint/dalvik-cache/arm /data/dalvik-cache/arm
+    # create dalvik-cache
+    mkdir /data/dalvik-cache 0771 root root
+    mkdir /data/dalvik-cache/arm 0771 system system
 
 on boot
     mount debugfs /sys/kernel/debug /sys/kernel/debug
