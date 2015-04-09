@@ -55,6 +55,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.silent=1
 
+# Use awesome player instead of nuplayer
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.media.use-awesome=1
+
 # Set usb type
 ADDITIONAL_DEFAULT_PROPERTIES += \
     persist.sys.ums=1 \
