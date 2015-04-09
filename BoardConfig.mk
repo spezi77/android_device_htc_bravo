@@ -72,8 +72,8 @@ SMALLER_FONT_FOOTPRINT := true
 MINIMAL_FONT_FOOTPRINT := true
 
 # Remove packages
-REMOVE_PRODUCT_PACKAGES += Gallery2 Exchange2 LiveWallpapers Galaxy4 Calendar
-REMOVE_PRODUCT_PACKAGES += Email Browser
+REMOVE_PRODUCT_PACKAGES += Gallery2 Exchange2 LiveWallpapers Galaxy4 Camera2
+REMOVE_PRODUCT_PACKAGES += Email
 
 # Recovery
 TARGET_RECOVERY_FSTAB   := device/htc/bravo/fstab.bravo
