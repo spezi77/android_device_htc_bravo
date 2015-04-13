@@ -67,9 +67,7 @@ BOARD_HAVE_PRE_KITKAT_AUDIO_POLICY_BLOB := true
 TARGET_CPU_SMP := false
 
 # Reduce font size
-EXTENDED_FONT_FOOTPRINT := false
-SMALLER_FONT_FOOTPRINT := true
-MINIMAL_FONT_FOOTPRINT := true
+EXTENDED_FONT_FOOTPRINT := true
 
 # Remove packages
 REMOVE_PRODUCT_PACKAGES += Gallery2 Exchange2 LiveWallpapers Galaxy4
