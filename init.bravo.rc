@@ -185,13 +185,18 @@ service iprenew_bnep0 /system/bin/dhcpcd -n
     disabled
     oneshot
 
+    # LMK values
+    # 6, 12, 26, 48, 64, 96 MB
+on property:sys.boot_completed=1
+    write /sys/module/lowmemorykiller/parameters/minfree 1536,3072,6656,12288,16384,24576
+
     # bugreport is triggered by the KEY_VOLUMEUP and BTN_MOUSE keycodes
 service bugreport /system/bin/dumpstate -d -v -o /sdcard/bugreports/bugreport
     class main
     disabled
     oneshot
     keycodes 115 272
-
+    
     # Wifi - Tethering
 on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd
