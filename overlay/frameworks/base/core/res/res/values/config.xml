@@ -67,7 +67,7 @@
          thrashing if set too low.  Overrides the default value chosen by ActivityManager
          based on screen size and total memory for the largest lowmemorykiller bucket, and
          scaled proportionally to the smaller buckets.  -1 keeps the default. -->
-    <integer name="config_lowMemoryKillerMinFreeKbytesAbsolute">38228</integer>
+    <integer name="config_lowMemoryKillerMinFreeKbytesAbsolute">24576</integer>
 
     <!-- Array of output values for LCD backlight corresponding to the LUX values
          in the config_autoBrightnessLevels array.  This array should have size one greater
