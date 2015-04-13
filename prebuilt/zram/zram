@@ -16,6 +16,8 @@ else
   swapoff /dev/block/zram0
   echo 1 /sys/block/zram0/reset
   echo $ZRAM_SIZE > /sys/block/zram0/disksize
+  echo 100 > /proc/sys/vm/swappiness
+  echo 120 > /proc/sys/vm/vfs_cache_pressure
   mkswap /dev/block/zram0
   swapon /dev/block/zram0
   echo "Enabled zRAM at $USE% ($ZRAM_RES)"
