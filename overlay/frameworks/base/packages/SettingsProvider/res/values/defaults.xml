@@ -29,4 +29,5 @@
     <!-- Default for UI touch sounds enabled -->
     <bool name="def_sound_effects_enabled">false</bool>
     <bool name="def_install_non_market_apps">true</bool>
+    <string name="def_backup_transport">com.google.android.backup/.BackupTransportService</string>
 </resources>
