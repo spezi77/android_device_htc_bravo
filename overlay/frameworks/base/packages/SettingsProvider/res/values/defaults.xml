@@ -21,11 +21,12 @@
     <bool name="def_screen_brightness_automatic_mode">true</bool>
     <integer name="def_screen_off_timeout">60000</integer>
     <integer name="def_lockscreen_sounds_enabled">0</integer>
+    <fraction name="def_window_animation_scale">25%</fraction>
+    <fraction name="def_window_transition_scale">25%</fraction>
+    <fraction name="def_animator_duration_scale">25%</fraction>
     <!-- Default for Settings.System.POINTER_SPEED -->
     <integer name="def_pointer_speed">50</integer>
     <!-- Default for UI touch sounds enabled -->
     <bool name="def_sound_effects_enabled">false</bool>
-    <fraction name="def_window_animation_scale">100%</fraction>
-    <fraction name="def_window_transition_scale">100%</fraction>
     <bool name="def_install_non_market_apps">true</bool>
 </resources>
