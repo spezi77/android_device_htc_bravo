@@ -23,7 +23,7 @@
 
 DEVICE_PACKAGE_OVERLAYS := device/htc/bravo/overlay
 
-# Propreties
+# Properties
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.lcd_density=240 \
     rild.libpath=/system/lib/libhtc_ril.so \
@@ -55,6 +55,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 ADDITIONAL_DEFAULT_PROPERTIES += \
     persist.sys.usb.config=mass_storage \
     persist.service.adb.enable=1
+
+# Performance tweaks
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.ksm.default=1 \
+    ro.zram.default=1
 
 #
 # Packages required for bravo
