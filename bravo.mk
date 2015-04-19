@@ -56,6 +56,11 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
     persist.sys.usb.config=mass_storage \
     persist.service.adb.enable=1
 
+# Performance tweaks
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.ksm.default=1 \
+    ro.zram.default=1
+
 #
 # Packages required for bravo
 #
