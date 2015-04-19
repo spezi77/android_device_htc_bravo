@@ -1,8 +1,8 @@
 ## Android fstab for HTC Bravo
 #
-## Niklas Luoto (nikez141@gmail.com)
+## Matthias (spezi77@gmx.com)
 #
-## Last updated: 2013-07-31
+## Last updated: 2015-04-19
 
 #<label>                                       <mnt_point>            <type>          <mnt_flags and options>        <fs_mgr_flags>
 boot                                           /boot                  mtd             defaults                        defaults
@@ -13,3 +13,6 @@ recovery                                       /recovery              mtd       
 system                                         /system                yaffs2          defaults                        defaults
 
 /devices/platform/msm_sdcc.2/mmc_host/mmc1     auto                   vfat            defaults                        voldmanaged=sdcard0:auto,noemulatedsd
+
+# zram
+/dev/block/zram0                               none                   swap            defaults                        zramsize=211070976
