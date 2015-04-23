@@ -1,0 +1,221 @@
+import init.power.rc
+import init.bravo.usb.rc
+
+on init
+    mkdir /storage 0050 system sdcard_r
+    mkdir /mnt/media_rw/sdcard0 0700 media_rw media_rw
+    mkdir /storage/sdcard0 0700 root root
+
+    # for backwards compatibility
+    symlink /storage/sdcard0 /sdcard
+    symlink /storage/sdcard0 /mnt/sdcard
+    
+    # for mount system from loop file on nand userdata
+    mkdir /mnt/sdcard2 0000 system system
+    export EXTERNAL_STORAGE /storage/sdcard0
+
+on fs
+    # sd cache
+    write /sys/devices/virtual/bdi/179:0/read_ahead_kb 1024
+    
+    # mount system from a loop file on nand userdata
+    mount yaffs2 mtd@system /mnt/sdcard2
+    mount ext4 loop@/mnt/sdcard2/system.img /system
+    
+    # mount mtd partitions
+    mount_all ./fstab.bravo
+    
+    # mount cache on nand partition
+    mount yaffs2 mtd@cache /cache nosuid nodev
+
+on post-fs-data
+    # create dalvik-cache
+    mkdir /data/dalvik-cache 0771 root root
+    mkdir /data/dalvik-cache/arm 0771 system system
+
+on boot
+    mount debugfs /sys/kernel/debug /sys/kernel/debug
+
+    # bluetooth power up/down interface
+    chown bluetooth bluetooth /dev/ttyHS0
+    chmod 0600 /dev/ttyHS0
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
+    chmod 0660                /sys/class/rfkill/rfkill0/state
+
+    chown radio radio /sys/module/pm/parameters/idle_sleep_mode
+
+    # bluetooth MAC address programming
+    chown bluetooth bluetooth /sys/module/board_bravo/parameters/bdaddr
+    setprop ro.bt.bdaddr_path /sys/module/board_bravo/parameters/bdaddr
+
+    # bluetooth car dock pin
+    chown system system /sys/class/switch/dock/bt_pin
+
+    # Permissions for Liblights.
+    chown system system /sys/class/leds/green/brightness
+    chown system system /sys/class/leds/green/blink
+    chown system system /sys/class/leds/amber/brightness
+    chown system system /sys/class/leds/amber/blink
+    chown system system /sys/class/leds/blue/brightness
+    chown system system /sys/class/leds/blue/blink
+    chown system system /sys/class/leds/button-backlight/brightness
+    chown system system /sys/class/leds/lcd-backlight/brightness
+
+    # flashlight
+    chown system camera /sys/devices/platform/flashlight.0/leds/flashlight/brightness
+    chmod 0660          /sys/devices/platform/flashlight.0/leds/flashlight/brightness
+
+    # enable the GPS
+    setprop ro.ril.def.agps.mode 2
+
+    # performance tweaks for flash
+    write /sys/block/mtdblock3/bdi/read_ahead_kb 4
+    write /sys/block/mtdblock4/bdi/read_ahead_kb 4
+    write /sys/block/mtdblock5/bdi/read_ahead_kb 4
+
+    # Wakelock debug
+    write /sys/module/wakelock/parameters/debug_mask 7
+
+    # Fast dormancy settings
+    setprop ro.ril.fast.dormancy.rule 1
+    setprop ro.ril.fd.scron.timeout 4
+    setprop ro.ril.fd.scroff.timeout 3
+
+    # KSM
+    write /sys/kernel/mm/ksm/pages_to_scan 100
+    write /sys/kernel/mm/ksm/sleep_millisecs 500
+    write /sys/kernel/mm/ksm/run 1
+    
+    # Network tweaks
+    write /proc/sys/net/ipv4/tcp_fin_timeout 30
+    write /proc/sys/net/ipv4/tcp_keepalive_probes 5
+    write /proc/sys/net/ipv4/tcp_keepalive_intvl 30
+    write /proc/sys/net/ipv4/tcp_timestamps 1
+    write /proc/sys/net/ipv4/tcp_keepalive_time 1200
+    write /proc/sys/net/core/rmem_max 404480
+    write /proc/sys/net/core/wmem_max 404480
+    write /proc/sys/net/core/rmem_default 256960
+    write /proc/sys/net/core/wmem_default 256960
+    write /proc/sys/net/ipv4/tcp_tw_reuse 1
+    write /proc/sys/net/ipv4/tcp_tw_recycle 1
+    write /proc/sys/net/ipv4/tcp_sack 1
+    write /proc/sys/net/ipv4/tcp_window_scaling 1
+    write /proc/sys/net/ipv4/tcp_mem "8192 87380 404480"
+    
+    # The next two settings will be overwritten every time
+    # the network type switches (wifi <-> umts etc.)
+    # so we start with wifi values to ensure best
+    # performance after boot.
+    write /proc/sys/net/ipv4/tcp_rmem "4096 87380 404480"
+    write /proc/sys/net/ipv4/tcp_wmem "8192 87380 393216"
+    setprop net.tcp.buffersize.wifi 8192,87380,404480,8192,87380,404480
+    setprop net.tcp.buffersize.hsdpa 8192,87380,404480,8192,65536,393216
+    setprop net.tcp.buffersize.umts 6144,87380,393216,6144,32768,283008
+    setprop net.tcp.buffersize.edge 4096,32768,220416,4096,32768,110208
+    setprop net.tcp.buffersize.gprs 4096,16384,32768,4096,11680,16384
+    
+    # Set Google DNS
+    setprop net.dns1 8.8.8.8
+    setprop net.dns2 8.8.4.4
+
+    # To prevent out of order acknowledgements from making
+    # connection tracking to treat them as not belonging to
+    # the connection they belong to.
+    # Otherwise, a weird issue happens in which some long
+    # connections on high-throughput links get dropped when
+    # an ack packet comes out of order
+    write /proc/sys/net/netfilter/nf_conntrack_tcp_be_liberal 1
+    
+    chown root system /proc/net/ip_conntrack
+
+    # To allow interfaces to get v6 address when tethering is enabled
+    write /proc/sys/net/ipv6/conf/rmnet0/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet1/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet2/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet3/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet4/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet5/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet6/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet7/accept_ra 2
+
+   #sdcard daemon
+service fuse_sdcard0 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard0 /storage/sdcard0
+    class late_start
+    disabled
+
+    # compass/accelerometer daemon
+service akmd /system/bin/akmd
+    class main
+    user compass
+    group compass misc input
+
+service wpa_supplicant /system/bin/wpa_supplicant \
+    -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
+    -I/system/etc/wifi/wpa_supplicant_overlay.conf \
+    -e/data/misc/wifi/entropy.bin \
+    -g@android:wpa_wlan0
+
+    class main
+    socket wpa_wlan0 dgram 660 wifi wifi
+    disabled
+    oneshot
+
+    # wifi
+service dhcpcd_wlan0 /system/bin/dhcpcd -aABDKL
+    class main
+    disabled
+    oneshot
+    
+    # bluetooth
+service dhcpcd_bnep0 /system/bin/dhcpcd -aABKL
+    class main
+    disabled
+    oneshot
+    
+    # wifi
+service iprenew_wlan0 /system/bin/dhcpcd -n
+    class main
+    disabled
+    oneshot
+
+    # bluetooth
+service iprenew_bnep0 /system/bin/dhcpcd -n
+    class main
+    disabled
+    oneshot
+
+    # LMK values
+    # 6, 12, 26, 48, 64, 96 MB
+on property:sys.boot_completed=1
+    write /sys/module/lowmemorykiller/parameters/minfree 1536,3072,6656,12288,16384,24576
+
+    # bugreport is triggered by the KEY_VOLUMEUP and BTN_MOUSE keycodes
+service bugreport /system/bin/dumpstate -d -v -o /sdcard/bugreports/bugreport
+    class main
+    disabled
+    oneshot
+    keycodes 115 272
+    
+    # Wifi - Tethering
+on property:init.svc.wpa_supplicant=stopped
+    stop dhcpcd
+
+    # zRAM enabler
+service zram-enabler /system/bin/sh /system/bin/zram.sh
+    class late_start
+    user root
+    disabled
+    oneshot
+
+service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
+    class late_start
+    user root
+    disabled
+    oneshot
+    
+on property:dev.bootcomplete=1
+    start qcom-post-boot
+    start zram-enabler
+
+service dspcrashd /system/bin/dspcrashd

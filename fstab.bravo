@@ -1,0 +1,14 @@
+## Android 5.0 fstab for HTC Bravo
+#
+## Matthias (spezi77@gmx.com)
+#
+## Last updated: 2015-04-08
+
+#<src>						<mnt_point>	<type>	<mnt_flags and options>		<fs_mgr_flags>
+boot						/boot		mtd	defaults			defaults
+misc						/misc		mtd	defaults			defaults
+recovery					/recovery	mtd	defaults			defaults
+system						/system		ext4	defaults			defaults
+/dev/block/mmcblk0p2				/data		ext4	noatime,nosuid,nodev,barrier=0	wait,check,encryptable=footer
+
+/devices/platform/msm_sdcc.2/mmc_host/mmc1*	auto		auto	defaults			voldmanaged=sdcard0:auto,noemulatedsd

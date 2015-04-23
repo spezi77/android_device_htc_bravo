@@ -1,0 +1,25 @@
+#!/system/bin/sh
+# enables zRAM on first boot
+
+file="/data/system/fstab.zram"
+
+if [ -e $file ]
+then
+   echo "Existing zRAM configuration found: /data/system/fstab.zram"
+else 
+  # zRAM Percentage
+  USE=50
+  # calculate zRAM size
+  RAM_SIZE=`cat /proc/meminfo | grep MemTotal | cut -d" " -f10`
+  ZRAM_SIZE=$(((($RAM_SIZE*1024)/100)*$USE))
+
+  swapoff /dev/block/zram0
+  echo 1 /sys/block/zram0/reset
+  echo $ZRAM_SIZE > /sys/block/zram0/disksize
+  echo 100 > /proc/sys/vm/swappiness
+  echo 120 > /proc/sys/vm/vfs_cache_pressure
+  mkswap /dev/block/zram0
+  swapon /dev/block/zram0
+  echo "Enabled zRAM at $USE% ($ZRAM_RES)"
+fi
+
