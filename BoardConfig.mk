@@ -36,7 +36,7 @@ BOARD_KERNEL_CMDLINE := no_console_suspend=1 msmsdcc_sdioirq=1 wire.search_count
 BOARD_KERNEL_BASE := 0x20000000
 BOARD_KERNEL_NEW_PPPOX := true
 
-TARGET_KERNEL_CONFIG    := evervolv_bravo_defconfig
+TARGET_KERNEL_CONFIG    := bravo_defconfig
 TARGET_RAMDISK_COMPRESSION := xz --check=crc32 --arm --lzma2=dict=1MiB
 
 # to enable the GPS HAL
@@ -52,7 +52,7 @@ TARGET_USE_KEYBOARD := international
 BOARD_USE_LEGACY_TOUCHSCREEN := true
 
 # Hacks
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/usb_mass_storage/lun0/file
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun0/file
 BOARD_USE_LEGACY_TRACKPAD := true
 BOARD_NO_WIFI_HAL := true
 TARGET_NO_NETD_AF_INET := true
