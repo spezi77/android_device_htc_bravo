@@ -6,20 +6,18 @@ on init
     mkdir /mnt/media_rw/sdcard0 0700 media_rw media_rw
     mkdir /storage/sdcard0 0700 root root
 
-# for backwards compatibility
+    # for backwards compatibility
     symlink /storage/sdcard0 /sdcard
     symlink /storage/sdcard0 /mnt/sdcard
 
     export EXTERNAL_STORAGE /storage/sdcard0
 
 on fs
-    # sd cache
-    write /sys/devices/virtual/bdi/179:0/read_ahead_kb 1024
     # mount mtd partitions
     mount_all ./fstab.bravo
 
 on post-fs-data
-    # create dalvik-cache on NAND by using a symlink from /data to /dataint which is our internal data partition
+    # create dalvik-cache on NAND by symlinking /data to /dataint which is our internal data partition
     mkdir /dataint/dalvik-cache 0771 root root
     mkdir /dataint/dalvik-cache/arm 0771 system system
     symlink /dataint/dalvik-cache /data/dalvik-cache
