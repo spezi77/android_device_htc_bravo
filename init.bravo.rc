@@ -5,7 +5,7 @@ on init
     mkdir /mnt/media_rw/sdcard0 0700 media_rw media_rw
     mkdir /storage/sdcard0 0700 root root
 
-# for backwards compatibility
+    # for backwards compatibility
     symlink /storage/sdcard0 /sdcard
     symlink /storage/sdcard0 /mnt/sdcard
 
@@ -16,6 +16,8 @@ on fs
     mount yaffs2 mtd@system /system ro remount
     #mount yaffs2 mtd@userdata /data nosuid nodev
     mount yaffs2 mtd@cache /cache nosuid nodev
+    # Mount swap partition for enabling zRAM
+    swapon_all fstab.bravo
 
     # wait for sdcard
     # wait has a timeot of 5 seconds.
