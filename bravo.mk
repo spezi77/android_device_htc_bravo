@@ -51,15 +51,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.ril.v3=signalstrengthgsm,apptypesim \
     ro.vold.umsdirtyratio=20
 
-# Tweaks
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.ksm.default=1 \
-    ro.zram.default=1
-
-# enable zRAM on first boot
-PRODUCT_COPY_FILES += \
-    device/htc/bravo/prebuilt/zram/zram:system/bin/zram.sh
-
 # Set usb type
 ADDITIONAL_DEFAULT_PROPERTIES += \
     persist.sys.usb.config=mass_storage \
