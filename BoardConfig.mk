@@ -78,6 +78,3 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 LEGACY_RIL := true
 BOARD_USES_LEGACY_RIL := true
 
-# Kernel target toolchain
-TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.7/bin/arm-eabi-
-
