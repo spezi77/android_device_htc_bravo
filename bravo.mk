@@ -51,6 +51,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.ril.config=signalstrengthgsm,apptypesim \
     ro.vold.umsdirtyratio=20
 
+# Enable swap
+PRODUCT_COPY_FILES += \
+    device/htc/bravo/prebuilt/swap/handle_swap:system/bin/handle_swap.sh
+
 # Disable bootanimation sound
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.silent=1

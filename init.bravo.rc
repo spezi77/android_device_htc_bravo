@@ -190,6 +190,13 @@ service bugreport /system/bin/dumpstate -d -v -o /sdcard/bugreports/bugreport
 on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd
 
+    # swap enabler
+service swap-enabler /system/bin/sh /system/bin/handle_swap.sh
+    class late_start
+    user root
+    disabled
+    oneshot
+
 service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
     class late_start
     user root
@@ -198,5 +205,6 @@ service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
 
 on property:dev.bootcomplete=1
     start qcom-post-boot
+    start swap-enabler
 
 service dspcrashd /system/bin/dspcrashd
