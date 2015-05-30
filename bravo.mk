@@ -56,9 +56,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.ksm.default=1 \
     ro.zram.default=1
 
-# enable zRAM on first boot
+# Use swap for LP
 PRODUCT_COPY_FILES += \
-    device/htc/bravo/prebuilt/zram/zram:system/bin/zram.sh
+    device/htc/bravo/prebuilt/swap/handle_swap:system/bin/handle_swap.sh
 
 # Disable bootanimation sound
 PRODUCT_PROPERTY_OVERRIDES += \
