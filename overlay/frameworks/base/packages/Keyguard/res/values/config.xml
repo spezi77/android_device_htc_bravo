@@ -1,0 +1,12 @@
+<resources>
+    <!-- Package name for default keyguard appwidget [DO NOT TRANSLATE] -->
+    <string name="widget_default_package_name">com.android.deskclock</string>
+
+    <!-- Class name for default keyguard appwidget [DO NOT TRANSLATE] -->
+    <string name="widget_default_class_name">com.android.alarmclock.DigitalAppWidgetProvider</string>
+    
+     <!-- default to disabling the menu key. The CM setting to
+     do this is a no-op unless the below item is true -->
+     <bool name="config_disableMenuKeyInLockScreen">true</bool>
+     
+</resources>
