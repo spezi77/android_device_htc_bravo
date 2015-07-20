@@ -37,7 +37,8 @@ BOARD_KERNEL_BASE := 0x20000000
 BOARD_KERNEL_NEW_PPPOX := true
 
 TARGET_KERNEL_CONFIG    := bravo_defconfig
-TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.7/bin/arm-eabi-
+TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.8/bin/arm-eabi-
+#TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.7/bin/arm-eabi-
 
 # to enable the GPS HAL
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := bravo

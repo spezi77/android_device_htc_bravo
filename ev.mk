@@ -28,9 +28,8 @@ PRODUCT_VERSION_DEVICE_SPECIFIC := p2
 PRODUCT_MOTD :="\n\n\n--------------------MESSAGE---------------------\nThank you for choosing Evervolv for your HTC Desire\nPlease visit us at \#evervolv on irc.freenode.net\nFollow @preludedrew for the latest Evervolv updates\nGet the latest rom at evervolv.com\n------------------------------------------------\n"
 
 # Copy compatible bootanimation
-#PRODUCT_COPY_FILES += \
-#    vendor/ev/prebuilt/wvga/media/bootanimation.zip:system/media/bootanimation.zip
-#    device/htc/passion/extras/bootanimation_passion_ics.zip:system/media/bootanimation.zip
+PRODUCT_COPY_FILES += \
+    vendor/ev/prebuilt/720p/media/halfres.zip:system/media/bootanimation.zip
 
 # Hot reboot
 PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/hot_reboot
