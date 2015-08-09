@@ -33,7 +33,7 @@ on boot
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
     chmod 0660                /sys/class/rfkill/rfkill0/state
 
-    chown radio radio /sys/module/pm/parameters/idle_sleep_mode
+    chown radio radio /sys/module/pm2/parameters/idle_sleep_mode
 
     # bluetooth MAC address programming
     chown bluetooth bluetooth /sys/module/board_bravo/parameters/bdaddr
