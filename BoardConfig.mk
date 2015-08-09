@@ -52,10 +52,14 @@ TARGET_USE_KEYBOARD := international
 BOARD_USE_LEGACY_TOUCHSCREEN := true
 
 # Hacks
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun0/file
 BOARD_USE_LEGACY_TRACKPAD := true
 BOARD_NO_WIFI_HAL := true
 TARGET_NO_NETD_AF_INET := true
+
+# USB
+BOARD_USE_USB_MASS_STORAGE_SWITCH := true
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun0/file
+BOARD_UMS_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun0/file"
 
 # Inform ART we have a single core
 TARGET_CPU_SMP := false
