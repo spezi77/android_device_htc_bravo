@@ -78,13 +78,18 @@ endif
 DONT_DEXPREOPT_PREBUILTS := true
 MALLOC_IMPL := dlmalloc
 
-# Reduce font size
+# Fonts
 EXTENDED_FONT_FOOTPRINT := true
 
 # Remove packages
 REMOVE_PRODUCT_PACKAGES += Gallery2 Exchange2 LiveWallpapers Galaxy4
 REMOVE_PRODUCT_PACKAGES += Email
 
+# Bootanimation
+TARGET_BOOTANIMATION_PRELOAD := true
+TARGET_BOOTANIMATION_TEXTURE_CACHE := true
+TARGET_BOOTANIMATION_USE_RGB565 := true
+TARGET_BOOTANIMATION_HALF_RES := true
 # Recovery
 TARGET_RECOVERY_FSTAB   := device/htc/bravo/fstab.bravo
 
