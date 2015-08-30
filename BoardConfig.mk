@@ -25,10 +25,7 @@
 # against the traditional rules of inheritance).
 
 # Camera
-USE_CAMERA_STUB := false
-ifeq ($(USE_CAMERA_STUB),false)
-BOARD_CAMERA_LIBRARIES := libcamera
-endif
+USE_CAMERA_STUB := true
 
 # inherit from the proprietary version
 -include vendor/htc/bravo/BoardConfigVendor.mk
