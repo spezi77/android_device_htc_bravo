@@ -89,7 +89,6 @@ REMOVE_PRODUCT_PACKAGES += Email VisualizationWallpapers LiveWallpapersPicker Ho
 TARGET_BOOTANIMATION_PRELOAD := true
 TARGET_BOOTANIMATION_TEXTURE_CACHE := true
 TARGET_BOOTANIMATION_USE_RGB565 := true
-TARGET_BOOTANIMATION_HALF_RES := true
 
 # Recovery
 TARGET_RECOVERY_FSTAB   := device/htc/bravo/fstab.bravo
