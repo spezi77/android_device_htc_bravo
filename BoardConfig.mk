@@ -90,8 +90,10 @@ TARGET_BOOTANIMATION_PRELOAD := true
 TARGET_BOOTANIMATION_TEXTURE_CACHE := true
 TARGET_BOOTANIMATION_USE_RGB565 := true
 TARGET_BOOTANIMATION_HALF_RES := true
+
 # Recovery
 TARGET_RECOVERY_FSTAB   := device/htc/bravo/fstab.bravo
+USE_SET_METADATA := false
 
 # TWRP Flags
 DEVICE_RESOLUTION := 480x800
@@ -100,6 +102,7 @@ TW_EXCLUDE_SU := true
 TW_EXCLUDE_ENCRYPTED_BACKUPS := true
 TW_NO_SCREEN_BLANK := true
 TW_USE_TOOLBOX := true
+HAVE_SELINUX := true
 
 # # cat /proc/mtd
 # dev:    size   erasesize  name
