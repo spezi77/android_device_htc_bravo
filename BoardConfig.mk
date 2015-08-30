@@ -78,6 +78,10 @@ endif
 DONT_DEXPREOPT_PREBUILTS := true
 MALLOC_IMPL := dlmalloc
 
+# Bootanimation
+TARGET_BOOTANIMATION_PRELOAD := true
+TARGET_BOOTANIMATION_TEXTURE_CACHE := true
+
 # Recovery
 TARGET_RECOVERY_FSTAB   := device/htc/bravo/fstab.bravo
 
