@@ -83,7 +83,7 @@ EXTENDED_FONT_FOOTPRINT := true
 
 # Remove packages
 REMOVE_PRODUCT_PACKAGES += Gallery2 Exchange2 LiveWallpapers Galaxy4
-REMOVE_PRODUCT_PACKAGES += Email
+REMOVE_PRODUCT_PACKAGES += Email VisualizationWallpapers LiveWallpapersPicker HoloSpiralWallpaper
 
 # Bootanimation
 TARGET_BOOTANIMATION_PRELOAD := true
