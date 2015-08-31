@@ -1,0 +1,26 @@
+From 2d7d47e7c690df2bbd105064ffb7105ed3d3a80b Mon Sep 17 00:00:00 2001
+From: spezi77 <spezi7713@gmail.com>
+Date: Sun, 1 Feb 2015 16:59:30 +0100
+Subject: [PATCH] Edify: add legacy fix for HTC Bravo * extract boot image to
+ /tmp before writing it to /boot
+
+Change-Id: Ie5748c98def88542f3b1102cd89bb4932f281f5c
+---
+ tools/releasetools/edify_generator.py | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/tools/releasetools/edify_generator.py b/tools/releasetools/edify_generator.py
+index c566efd..2644f78 100644
+--- a/tools/releasetools/edify_generator.py
++++ b/tools/releasetools/edify_generator.py
+@@ -308,7 +308,8 @@ def WriteRawImage(self, mount_point, fn, mapfn=None):
+       args = {'device': p.device, 'fn': fn}
+       if partition_type == "MTD":
+         self.script.append(
+-            'write_raw_image(package_extract_file("%(fn)s"), "%(device)s");'
++            'package_extract_file("%(fn)s", "/tmp/boot.img");'
++            'write_raw_image("/tmp/boot.img", "%(device)s");' % args
+             % args)
+       elif partition_type == "EMMC":
+         if mapfn:
+

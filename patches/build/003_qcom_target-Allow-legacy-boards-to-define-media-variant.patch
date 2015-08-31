@@ -1,0 +1,58 @@
+From e7db6e1b9b512aec729f61cbcdad194d5ba3907c Mon Sep 17 00:00:00 2001
+From: Thomas Lehner <thomas.lehner@justremotephone.com>
+Date: Sat, 6 Dec 2014 21:39:30 +0100
+Subject: [PATCH] qcom_target: Allow legacy boards to define media variant.
+
+ex.: qsd8k does not build with media-legacy
+
+Change-Id: I01c67c5f245959ac7ea5ebd47d3134de64aed410
+Signed-off-by: spezi77 <spezi77@gmx.com>
+
+Conflicts:
+	core/qcom_target.mk
+
+Conflicts:
+	core/qcom_target.mk
+---
+ core/qcom_target.mk | 24 +++++++++++++++++++++---
+ 1 file changed, 21 insertions(+), 3 deletions(-)
+
+diff --git a/core/qcom_target.mk b/core/qcom_target.mk
+index f8815ef..01fd0a2 100644
+--- a/core/qcom_target.mk
++++ b/core/qcom_target.mk
+@@ -40,12 +40,30 @@ ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
+         # Enables legacy repos to be handled
+         ifeq ($(BOARD_USES_LEGACY_QCOM_DISPLAY),true)
+             QCOM_DISPLAY_VARIANT := display-legacy
+-            QCOM_MEDIA_VARIANT := media-legacy
+         else
+             QCOM_DISPLAY_VARIANT := display-caf/msm8960
++        endif
++        ifeq ($(BOARD_USES_LEGACY_QCOM_MEDIA),true)
++            QCOM_MEDIA_VARIANT := media-legacy
++        else
+             QCOM_MEDIA_VARIANT := media-caf/msm8960
+         endif
+     endif
+-
+-$(call ril-set-path-variant,ril)
++else
++    # QSD8K doesn't use QCOM_HARDWARE flag
++    ifneq ($(filter qsd8k,$(TARGET_BOARD_PLATFORM)),)
++        QCOM_AUDIO_VARIANT := audio-caf/msm8960
++    else
++        QCOM_AUDIO_VARIANT := audio
++    endif
++    ifeq ($(BOARD_USES_LEGACY_QCOM_DISPLAY),true)
++        QCOM_DISPLAY_VARIANT := display-legacy
++    else
++        QCOM_DISPLAY_VARIANT := display
++    endif
++    ifeq ($(BOARD_USES_LEGACY_QCOM_MEDIA),true)
++        QCOM_MEDIA_VARIANT := media-legacy
++    else
++        QCOM_MEDIA_VARIANT := media
++    endif
+ endif
+

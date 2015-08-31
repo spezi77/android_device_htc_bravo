@@ -1,0 +1,38 @@
+From 812efd530073c3222c11df0995fb23d14fa25b95 Mon Sep 17 00:00:00 2001
+From: Nick Reuter <nreuter85@gmail.com>
+Date: Fri, 28 Nov 2014 23:15:32 -0600
+Subject: [PATCH] build: fix project pathmap with legacy repos
+
+ some devices still use (display/media)-legacy. Enable those
+ trees to be handled via project pathmap.
+
+Change-Id: I38b75ea49b3f7f5736eaaf9370bb72b2aaa42320
+
+Conflicts:
+	core/qcom_target.mk
+
+Conflicts:
+	core/qcom_target.mk
+---
+ core/qcom_target.mk | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
+
+diff --git a/core/qcom_target.mk b/core/qcom_target.mk
+index 79f8c5b..93364b7 100644
+--- a/core/qcom_target.mk
++++ b/core/qcom_target.mk
+@@ -64,12 +64,9 @@ else
+     endif
+     ifeq ($(BOARD_USES_LEGACY_QCOM_DISPLAY),true)
+         QCOM_DISPLAY_VARIANT := display-legacy
+-    else
+-        QCOM_DISPLAY_VARIANT := display
+-    endif
+-    ifeq ($(BOARD_USES_LEGACY_QCOM_MEDIA),true)
+         QCOM_MEDIA_VARIANT := media-legacy
+     else
++        QCOM_DISPLAY_VARIANT := display
+         QCOM_MEDIA_VARIANT := media
+     endif
+ endif
+

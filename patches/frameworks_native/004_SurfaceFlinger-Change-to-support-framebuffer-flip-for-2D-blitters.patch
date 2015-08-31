@@ -1,0 +1,75 @@
+From 6cf0d6e8d628a6e35fa006eb73b1304813a41dde Mon Sep 17 00:00:00 2001
+From: "Arun Kumar K.R" <akumarkr@codeaurora.org>
+Date: Wed, 19 Dec 2012 18:10:46 -0800
+Subject: [PATCH] SurfaceFlinger: Change to support framebuffer flip for 2D
+ blitters
+
+- Surfaceflinger does not flip framebuffers when there are
+  no layers marked for HWC_FRAMEBUFFER
+- This change checks for the HWC_BLIT flag and will request a flip
+  to a new FB_TARGET buffer even if there are no FRAMEBUFFER layers
+
+Conflicts:
+	services/surfaceflinger/DisplayHardware/HWComposer.cpp
+	services/surfaceflinger/Layer.cpp
+
+Change-Id: I1cb44389a05c9ec049d7f0d39c288feccb11a91c
+---
+ services/surfaceflinger/DisplayHardware/HWComposer.cpp | 6 ++++++
+ services/surfaceflinger/Layer.cpp                      | 3 ++-
+ services/surfaceflinger/SurfaceFlinger.cpp             | 3 +++
+ 3 files changed, 11 insertions(+), 1 deletion(-)
+
+diff --git a/services/surfaceflinger/DisplayHardware/HWComposer.cpp b/services/surfaceflinger/DisplayHardware/HWComposer.cpp
+index edfed49..9712c2d 100644
+--- a/services/surfaceflinger/DisplayHardware/HWComposer.cpp
++++ b/services/surfaceflinger/DisplayHardware/HWComposer.cpp
+@@ -690,6 +690,11 @@ status_t HWComposer::prepare() {
+                     if (l.compositionType == HWC_FRAMEBUFFER) {
+                         disp.hasFbComp = true;
+                     }
++                    // If the composition type is BLIT, we set this to
++                    // trigger a FLIP
++                    if(l.compositionType == HWC_BLIT) {
++                        disp.hasFbComp = true;
++                    }
+                     if (l.compositionType == HWC_OVERLAY) {
+                         disp.hasOvComp = true;
+                     }
+@@ -1174,6 +1179,7 @@ void HWComposer::dump(String8& result) const {
+                             "FB TARGET",
+                             "SIDEBAND",
+                             "HWC_CURSOR",
++                            "FB_BLIT",
+                             "UNKNOWN"};
+                     if (type >= NELEM(compositionTypeName))
+                         type = NELEM(compositionTypeName) - 1;
+diff --git a/services/surfaceflinger/Layer.cpp b/services/surfaceflinger/Layer.cpp
+index 5e3dfab..65b148b 100644
+--- a/services/surfaceflinger/Layer.cpp
++++ b/services/surfaceflinger/Layer.cpp
+@@ -530,7 +530,8 @@ void Layer::setAcquireFence(const sp<const DisplayDevice>& /* hw */,
+     // TODO: there is a possible optimization here: we only need to set the
+     // acquire fence the first time a new buffer is acquired on EACH display.
+ 
+-    if (layer.getCompositionType() == HWC_OVERLAY || layer.getCompositionType() == HWC_CURSOR_OVERLAY) {
++    if (layer.getCompositionType() == HWC_OVERLAY || layer.getCompositionType() == HWC_CURSOR_OVERLAY ||
++            layer.getCompositionType() == HWC_BLIT) {
+         sp<Fence> fence = mSurfaceFlingerConsumer->getCurrentFence();
+         if (fence->isValid()) {
+             fenceFd = fence->dup();
+diff --git a/services/surfaceflinger/SurfaceFlinger.cpp b/services/surfaceflinger/SurfaceFlinger.cpp
+index 80d3cc2..49eb43f 100644
+--- a/services/surfaceflinger/SurfaceFlinger.cpp
++++ b/services/surfaceflinger/SurfaceFlinger.cpp
+@@ -1907,6 +1907,9 @@ bool SurfaceFlinger::doComposeSurfaces(const sp<const DisplayDevice>& hw, const
+                         layer->draw(hw, clip);
+                         break;
+                     }
++                    case HWC_BLIT:
++                        //Do nothing
++                        break;
+                     case HWC_FRAMEBUFFER_TARGET: {
+                         // this should not happen as the iterator shouldn't
+                         // let us get there.
+

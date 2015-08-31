@@ -1,0 +1,45 @@
+From 522207405d45ffd899cca1034d5db11053b4a0cb Mon Sep 17 00:00:00 2001
+From: Ricardo Cerqueira <cyanogenmod@cerqueira.org>
+Date: Fri, 20 Jul 2012 19:38:16 +0100
+Subject: [PATCH] arm: Allow disabling PIE for dynamically linked executables
+
+PIE can and does break some binaries that were built without it,
+resulting in relocation-related issues (addressing memory
+wrongly assumed to be at a fixed position).
+
+Use this as a last resort measure for compatibility with pre-JB
+binary blobs, and only if confirmed to fix a broken executable.
+If you're not sure, do NOT enable this on a device.
+
+Change-Id: I3b7001e682a6f7a845e62278fe2afa9ccf5552a4
+---
+ core/combo/TARGET_linux-arm.mk | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+diff --git a/core/combo/TARGET_linux-arm.mk b/core/combo/TARGET_linux-arm.mk
+index 95b1804..9b1dcc2 100644
+--- a/core/combo/TARGET_linux-arm.mk
++++ b/core/combo/TARGET_linux-arm.mk
+@@ -92,6 +92,12 @@ ifeq ($(FORCE_ARM_DEBUGGING),true)
+   $(combo_2nd_arch_prefix)TARGET_thumb_CFLAGS += -marm -fno-omit-frame-pointer
+ endif
+ 
++ifeq ($(TARGET_DISABLE_ARM_PIE),true)
++   PIE_EXECUTABLE_TRANSFORM :=
++else
++   PIE_EXECUTABLE_TRANSFORM := -pie
++endif
++
+ android_config_h := $(call select-android-config-h,linux-arm)
+ 
+ $(combo_2nd_arch_prefix)TARGET_GLOBAL_CFLAGS += \
+@@ -219,7 +225,7 @@ $(hide) $(PRIVATE_CXX) \
+ endef
+ 
+ define $(combo_2nd_arch_prefix)transform-o-to-executable-inner
+-$(hide) $(PRIVATE_CXX) -nostdlib -Bdynamic -pie \
++$(hide) $(PRIVATE_CXX) -nostdlib -Bdynamic $(PIE_EXECUTABLE_TRANSFORM) \
+ 	-Wl,-dynamic-linker,/system/bin/linker \
+ 	-Wl,--gc-sections \
+ 	-Wl,-z,nocopyreloc \
+

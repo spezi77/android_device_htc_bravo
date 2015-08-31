@@ -1,0 +1,25 @@
+From 6d5b8d86dfd0fcfd9cbf0f8f884b4d3b90e4dfa5 Mon Sep 17 00:00:00 2001
+From: Thomas Lehner <thomas.lehner@justremotephone.com>
+Date: Fri, 28 Nov 2014 19:27:18 +0100
+Subject: [PATCH] DO NOT MERGE: Temporary fix for log span
+ "HWC_FRAMEBUFFER_TARGET found in hwc list" on BRAVO.
+
+Change-Id: I3603fccdd244fd6974835c9435130aa972c10cad
+---
+ services/surfaceflinger/SurfaceFlinger.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/services/surfaceflinger/SurfaceFlinger.cpp b/services/surfaceflinger/SurfaceFlinger.cpp
+index fd32472..55f8ffa 100644
+--- a/services/surfaceflinger/SurfaceFlinger.cpp
++++ b/services/surfaceflinger/SurfaceFlinger.cpp
+@@ -2345,7 +2345,7 @@ bool SurfaceFlinger::doComposeSurfaces(const sp<const DisplayDevice>& hw, const
+                     case HWC_FRAMEBUFFER_TARGET: {
+                         // this should not happen as the iterator shouldn't
+                         // let us get there.
+-                        ALOGW("HWC_FRAMEBUFFER_TARGET found in hwc list (index=%zu)", i);
++                  //      ALOGW("HWC_FRAMEBUFFER_TARGET found in hwc list (index=%zu)", i);
+                         break;
+                     }
+                 }
+

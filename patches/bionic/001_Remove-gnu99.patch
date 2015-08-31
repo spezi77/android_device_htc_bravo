@@ -1,0 +1,41 @@
+From 2dcb24521436ce11d50b2b642a74ede73d8eb54f Mon Sep 17 00:00:00 2001
+From: Chet Kener <Cl3Kener@gmail.com>
+Date: Sun, 18 Jan 2015 08:21:27 -0500
+Subject: [PATCH] Remove gnu99
+
+Too old
+
+Signed-off-by: Chet Kener <Cl3Kener@gmail.com>
+Signed-off-by: spezi77 <spezi77@gmx.com>
+---
+ libc/Android.mk   | 2 +-
+ linker/Android.mk | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/libc/Android.mk b/libc/Android.mk
+index fb99c81..b6e7958 100644
+--- a/libc/Android.mk
++++ b/libc/Android.mk
+@@ -552,7 +552,7 @@ endif
+ 
+ # Define some common conlyflags
+ libc_common_conlyflags := \
+-    -std=gnu99
++    -std=gnu11
+ 
+ # Define some common cppflags
+ libc_common_cppflags := \
+diff --git a/linker/Android.mk b/linker/Android.mk
+index 5022c4e..a847b94 100644
+--- a/linker/Android.mk
++++ b/linker/Android.mk
+@@ -31,7 +31,7 @@ LOCAL_CFLAGS += \
+     -Wall -Wextra -Wunused -Werror \
+ 
+ LOCAL_CONLYFLAGS += \
+-    -std=gnu99 \
++    -std=gnu11 \
+ 
+ LOCAL_CPPFLAGS += \
+     -std=gnu++11 \
+

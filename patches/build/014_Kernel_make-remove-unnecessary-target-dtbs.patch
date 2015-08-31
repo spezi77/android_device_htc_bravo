@@ -1,0 +1,23 @@
+From e04e984b5df1522b270bf3e73fd147202e516b8b Mon Sep 17 00:00:00 2001
+From: spezi77 <spezi77@gmx.com>
+Date: Sun, 1 Mar 2015 19:03:19 +0100
+Subject: [PATCH] Kernel make: remove unnecessary target 'dtbs'
+
+Change-Id: Ie1b497e207da7f02ce93885dbdd03c2123adfb28
+---
+ core/tasks/kernel.mk | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/core/tasks/kernel.mk b/core/tasks/kernel.mk
+index 1556a26..1fdd47c 100644
+--- a/core/tasks/kernel.mk
++++ b/core/tasks/kernel.mk
+@@ -227,7 +227,6 @@ $(KERNEL_CONFIG): $(KERNEL_OUT)
+ 
+ TARGET_KERNEL_BINARIES: $(KERNEL_OUT) $(KERNEL_CONFIG) $(KERNEL_HEADERS_INSTALL)
+ 	$(MAKE) $(MAKE_FLAGS) -C $(KERNEL_SRC) O=$(KERNEL_OUT) ARCH=$(KERNEL_ARCH) $(KERNEL_CROSS_COMPILE) $(TARGET_PREBUILT_INT_KERNEL_TYPE)
+-	-$(MAKE) $(MAKE_FLAGS) -C $(KERNEL_SRC) O=$(KERNEL_OUT) ARCH=$(KERNEL_ARCH) $(KERNEL_CROSS_COMPILE) dtbs
+ 	-$(MAKE) $(MAKE_FLAGS) -C $(KERNEL_SRC) O=$(KERNEL_OUT) ARCH=$(KERNEL_ARCH) $(KERNEL_CROSS_COMPILE) modules
+ 	-$(MAKE) $(MAKE_FLAGS) -C $(KERNEL_SRC) O=$(KERNEL_OUT) INSTALL_MOD_PATH=../../$(KERNEL_MODULES_INSTALL) ARCH=$(KERNEL_ARCH) $(KERNEL_CROSS_COMPILE) modules_install
+ 	$(mv-modules)
+

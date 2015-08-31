@@ -1,0 +1,24 @@
+From eabdd8dad64909f8675643c8a8b59af039cd81cc Mon Sep 17 00:00:00 2001
+From: Thomas Lehner <justremotephone@gmail.com>
+Date: Sun, 7 Dec 2014 20:13:18 +0100
+Subject: [PATCH] qcom_target: Bring audio back to QSD8K.
+
+Change-Id: I6e25b5f7e1652da34ec0e3e7f0e3e2688940d801
+---
+ core/qcom_target.mk | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/core/qcom_target.mk b/core/qcom_target.mk
+index 02e51ae..a4c344e 100644
+--- a/core/qcom_target.mk
++++ b/core/qcom_target.mk
+@@ -69,7 +69,7 @@ ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
+ else
+     # QSD8K doesn't use QCOM_HARDWARE flag
+     ifneq ($(filter qsd8k,$(TARGET_BOARD_PLATFORM)),)
+-        QCOM_AUDIO_VARIANT := audio-legacy
++        QCOM_AUDIO_VARIANT := audio-caf
+     else
+         QCOM_AUDIO_VARIANT := audio
+     endif
+

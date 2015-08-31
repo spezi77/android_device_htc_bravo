@@ -1,0 +1,53 @@
+From 26ac6d93e8e1e338afb01d6d7671582ef4a79648 Mon Sep 17 00:00:00 2001
+From: Arne Coucheron <arco68@gmail.com>
+Date: Wed, 3 Dec 2014 07:51:12 +0100
+Subject: [PATCH] wifi: Allow building without Wifi HAL
+
+ * For example devices with older broadcom chips with driver built
+   as module doesn't like this. When the device goes into suspend
+   mode, the wifi service crashes and the device soft reboots.
+
+ * To not build the HAL, use:
+   BOARD_NO_WIFI_HAL := true
+
+Change-Id: I36d5525115d8da58a4ea8f285f483cc8079a8e9d
+---
+ service/Android.mk | 24 +++++++++++++-----------
+ 1 file changed, 13 insertions(+), 11 deletions(-)
+
+diff --git a/service/Android.mk b/service/Android.mk
+index 08b9ff0..137388a 100755
+--- a/service/Android.mk
++++ b/service/Android.mk
+@@ -42,17 +42,19 @@ include $(BUILD_STATIC_LIBRARY)
+ # ============================================================
+ LIB_WIFI_HAL := libwifi-hal
+ 
+-ifeq ($(BOARD_WLAN_DEVICE), bcmdhd)
+-  LIB_WIFI_HAL := libwifi-hal-bcm
+-else ifeq ($(BOARD_WLAN_DEVICE), qcwcn)
+-  LIB_WIFI_HAL := libwifi-hal-qcom
+-else ifeq ($(BOARD_WLAN_DEVICE), mrvl)
+-  # this is commented because none of the nexus devices
+-  # that sport Marvell's wifi have support for HAL
+-  # LIB_WIFI_HAL := libwifi-hal-mrvl
+-else ifeq ($(BOARD_WLAN_DEVICE), MediaTek)
+-  # support MTK WIFI HAL
+-  LIB_WIFI_HAL := libwifi-hal-mt66xx
++ifneq ($(BOARD_NO_WIFI_HAL), true)
++  ifeq ($(BOARD_WLAN_DEVICE), bcmdhd)
++    LIB_WIFI_HAL := libwifi-hal-bcm
++  else ifeq ($(BOARD_WLAN_DEVICE), qcwcn)
++    LIB_WIFI_HAL := libwifi-hal-qcom
++  else ifeq ($(BOARD_WLAN_DEVICE), mrvl)
++    # this is commented because none of the nexus devices
++    # that sport Marvell's wifi have support for HAL
++    # LIB_WIFI_HAL := libwifi-hal-mrvl
++  else ifeq ($(BOARD_WLAN_DEVICE), MediaTek)
++    # support MTK WIFI HAL
++    LIB_WIFI_HAL := libwifi-hal-mt66xx
++  endif
+ endif
+ 
+ # Build the HalUtil
+

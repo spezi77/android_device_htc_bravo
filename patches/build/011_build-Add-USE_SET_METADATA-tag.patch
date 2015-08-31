@@ -1,0 +1,33 @@
+From 7d5d18fbec1506a04f8d8d4fd782c96208e0df5e Mon Sep 17 00:00:00 2001
+From: flintman <flintman@flintmancomputers.com>
+Date: Thu, 7 Nov 2013 19:50:06 -0500
+Subject: [PATCH] build:  Add USE_SET_METADATA tag
+
+On some of the older devices the recovery doesn't support
+metadata when setting permissions.  This allows to use
+set_perm vs set_metadata you will need to set
+USE_SET_METADATA := false inside your boardconfig.mk
+
+Change-Id: Ib6cf97b5ca28cee8a87975231f3a61b156e77d29
+
+Conflicts:
+	core/Makefile
+---
+ core/Makefile | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/core/Makefile b/core/Makefile
+index 0af9ffe..a85ccde 100644
+--- a/core/Makefile
++++ b/core/Makefile
+@@ -1625,7 +1625,9 @@ ifdef PRODUCT_EXTRA_RECOVERY_KEYS
+ 	$(hide) echo "extra_recovery_keys=$(PRODUCT_EXTRA_RECOVERY_KEYS)" >> $(zip_root)/META/misc_info.txt
+ endif
+ 	$(hide) echo 'mkbootimg_args=$(BOARD_MKBOOTIMG_ARGS)' >> $(zip_root)/META/misc_info.txt
++ifneq ($(USE_SET_METADATA),false)
+ 	$(hide) echo "use_set_metadata=1" >> $(zip_root)/META/misc_info.txt
++endif
+ 	$(hide) echo "multistage_support=1" >> $(zip_root)/META/misc_info.txt
+ 	$(hide) echo "update_rename_support=1" >> $(zip_root)/META/misc_info.txt
+ 	$(hide) echo "blockimgdiff_versions=1,2" >> $(zip_root)/META/misc_info.txt
+

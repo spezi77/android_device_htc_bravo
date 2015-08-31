@@ -1,0 +1,80 @@
+From 215ef798f6cbde33df05f749a1bb94a753bd6027 Mon Sep 17 00:00:00 2001
+From: spezi77 <spezi7713@gmail.com>
+Date: Sun, 1 Feb 2015 19:16:24 +0100
+Subject: [PATCH] qcom_target: add again missed out QSD8K libs
+
+Change-Id: Id07934bd804b5868f5813f2de250b47441e410d5
+Signed-off-by: spezi77 <spezi77@gmx.com>
+---
+ core/qcom_target.mk | 37 ++++++++++++++++++++++++++++++-------
+ 1 file changed, 30 insertions(+), 7 deletions(-)
+
+diff --git a/core/qcom_target.mk b/core/qcom_target.mk
+index 9f4dd77..f36e8ef 100644
+--- a/core/qcom_target.mk
++++ b/core/qcom_target.mk
+@@ -8,21 +8,32 @@ define ril-set-path-variant
+ $(call project-set-path-variant,ril,TARGET_RIL_VARIANT,hardware/$(1))
+ endef
+ 
++# Enable DirectTrack on QCOM legacy boards
+ ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
+ 
+-    qcom_flags := -DQCOM_HARDWARE
+-    qcom_flags += -DQCOM_BSP
++    TARGET_GLOBAL_CFLAGS += -DQCOM_HARDWARE
++    TARGET_GLOBAL_CPPFLAGS += -DQCOM_HARDWARE
++
++    ifneq ($(BOARD_USES_LEGACY_QCOM_DISPLAY),true)
++        TARGET_USES_QCOM_BSP := true
++        TARGET_GLOBAL_CFLAGS += -DQCOM_BSP
++        TARGET_GLOBAL_CPPFLAGS += -DQCOM_BSP
++    endif
+ 
+-    TARGET_USES_QCOM_BSP := true
+     TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
+ 
+     # Enable DirectTrack for legacy targets
+     ifneq ($(filter msm7x30 msm8660 msm8960,$(TARGET_BOARD_PLATFORM)),)
+         ifeq ($(BOARD_USES_LEGACY_ALSA_AUDIO),true)
+-            qcom_flags += -DQCOM_DIRECTTRACK
++        TARGET_GLOBAL_CFLAGS += -DQCOM_DIRECTTRACK
++        TARGET_GLOBAL_CPPFLAGS += -DQCOM_DIRECTTRACK
++    endif
++        ifneq ($(BOARD_USES_LEGACY_QCOM_DISPLAY),true)
++            # Enable legacy graphics functions
++            TARGET_USES_QCOM_BSP_LEGACY := true
++            TARGET_GLOBAL_CFLAGS += -DQCOM_BSP_LEGACY
++            TARGET_GLOBAL_CPPFLAGS += -DQCOM_BSP_LEGACY
+         endif
+-        # Enable legacy graphics functions
+-        qcom_flags += -DQCOM_BSP_LEGACY
+     endif
+ 
+     ifneq ($(filter msm8084,$(TARGET_BOARD_PLATFORM)),)
+@@ -52,7 +63,7 @@ ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
+ else
+     # QSD8K doesn't use QCOM_HARDWARE flag
+     ifneq ($(filter qsd8k,$(TARGET_BOARD_PLATFORM)),)
+-        QCOM_AUDIO_VARIANT := audio-caf/msm8960
++        QCOM_AUDIO_VARIANT := audio-legacy
+     else
+         QCOM_AUDIO_VARIANT := audio
+     endif
+@@ -64,3 +75,15 @@ else
+         QCOM_MEDIA_VARIANT := media
+     endif
+ endif
++
++$(call project-set-path,qcom-audio,hardware/qcom/$(QCOM_AUDIO_VARIANT))
++$(call project-set-path,qcom-display,hardware/qcom/$(QCOM_DISPLAY_VARIANT))
++$(call project-set-path,qcom-media,hardware/qcom/$(QCOM_MEDIA_VARIANT))
++ifeq ($(USE_DEVICE_SPECIFIC_CAMERA),true)
++$(call project-set-path,qcom-camera,$(TARGET_DEVICE_DIR)/camera)
++else
++$(call qcom-set-path-variant,CAMERA,camera)
++endif
++$(call qcom-set-path-variant,GPS,gps)
++$(call qcom-set-path-variant,SENSORS,sensors)
++$(call ril-set-path-variant,ril)
+

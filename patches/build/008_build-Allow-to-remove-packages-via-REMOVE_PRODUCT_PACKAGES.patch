@@ -1,0 +1,31 @@
+From 284f0f2f783162798bf57286ff7def87bbc5c8f1 Mon Sep 17 00:00:00 2001
+From: Thomas Lehner <thomas.lehner@justremotephone.com>
+Date: Fri, 28 Nov 2014 17:56:18 +0100
+Subject: [PATCH] build: Allow to remove packages via REMOVE_PRODUCT_PACKAGES.
+
+REMOVE_PRODUCT_PACKAGES can be used by device configurations to
+remove default packages. (ex. to reduce system.img size)
+
+Change-Id: I2fdf74b642ae3f32905b70903e883dda9f67cc3a
+---
+ core/main.mk | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/core/main.mk b/core/main.mk
+index 039b3c3..f816b43 100644
+--- a/core/main.mk
++++ b/core/main.mk
+@@ -696,6 +696,12 @@ ifdef FULL_BUILD
+   product_MODULES := $(filter-out $(foreach p, $(product_MODULES), \
+       $(PACKAGES.$(p).OVERRIDES)), $(product_MODULES))
+ 
++  # Filter out the removed packages before doing expansion
++  product_MODULES := $(filter-out $(REMOVE_PRODUCT_PACKAGES), $(product_MODULES))
++  ifneq ($(REMOVE_PRODUCT_PACKAGES),)
++    $(warning Packages removed via REMOVE_PRODUCT_PACKAGES: $(REMOVE_PRODUCT_PACKAGES))
++  endif
++
+   # Resolve the :32 :64 module name
+   modules_32 := $(patsubst %:32,%,$(filter %:32, $(product_MODULES)))
+   modules_64 := $(patsubst %:64,%,$(filter %:64, $(product_MODULES)))
+

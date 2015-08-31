@@ -1,0 +1,33 @@
+From efc0dbf014a03ef4362d035cf3f46daa55896836 Mon Sep 17 00:00:00 2001
+From: spezi77 <spezi77@gmx.com>
+Date: Tue, 1 Sep 2015 14:07:09 +0200
+Subject: [PATCH] Revert "sepolicy: Deduplicate the final policy union"
+
+This reverts commit 79ff523ac99b339914ccaa754e068072d64da542.
+---
+ Android.mk | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Android.mk b/Android.mk
+index 839513c..90a0059 100644
+--- a/Android.mk
++++ b/Android.mk
+@@ -63,7 +63,7 @@ $(foreach pf, $(BOARD_SEPOLICY_UNION), \
+ # both BOARD_SEPOLICY_REPLACE and BOARD_SEPOLICY_UNION
+ # product variables.
+ # $(1): the set of policy name paths to build
+-build_policy = $(call uniq,$(foreach type, $(1), \
++build_policy = $(foreach type, $(1), \
+   $(filter-out $(BOARD_SEPOLICY_IGNORE), \
+     $(foreach expanded_type, $(notdir $(wildcard $(addsuffix /$(type), $(LOCAL_PATH)))), \
+       $(if $(filter $(expanded_type), $(BOARD_SEPOLICY_REPLACE)), \
+@@ -77,7 +77,7 @@ build_policy = $(call uniq,$(foreach type, $(1), \
+       ) \
+     ) \
+   ) \
+-))
++)
+ 
+ sepolicy_build_files := security_classes \
+                         initial_sids \
+

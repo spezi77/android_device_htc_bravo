@@ -1,0 +1,47 @@
+From f8aa0b912d5ed241a6d9f1ebb9d94e5cc210feb7 Mon Sep 17 00:00:00 2001
+From: Thomas Lehner <justremotephone@gmail.com>
+Date: Fri, 28 Nov 2014 23:13:20 +0100
+Subject: [PATCH] NETD: Add option NO_ADDRESSFAMELY_INET to remove IP4 from
+ modifyIpRule.
+
+Fix for not working WIFI for BRAVO on LOLLIPOP. sendNetlinkRequest
+returns: address family not supported for AF_INET.
+
+Change-Id: Id22a7777199a410664de1def3b7df23184b27c1c
+---
+ server/Android.mk          | 4 ++++
+ server/RouteController.cpp | 4 ++++
+ 2 files changed, 8 insertions(+)
+
+diff --git a/server/Android.mk b/server/Android.mk
+index fbcba67..e2cd99b 100755
+--- a/server/Android.mk
++++ b/server/Android.mk
+@@ -83,6 +83,10 @@ ifdef WPA_SUPPLICANT_VERSION
+   LOCAL_C_INCLUDES += external/wpa_supplicant_8/src/common
+ endif
+ 
++ifeq ($(TARGET_NO_NETD_AF_INET),true)
++    LOCAL_CFLAGS += -DNO_ADDRESSFAMELY_INET
++endif
++
+ include $(BUILD_EXECUTABLE)
+ 
+ include $(CLEAR_VARS)
+diff --git a/server/RouteController.cpp b/server/RouteController.cpp
+index 17aa1e0..63582a7 100644
+--- a/server/RouteController.cpp
++++ b/server/RouteController.cpp
+@@ -77,7 +77,11 @@ const uint16_t NETLINK_CREATE_REQUEST_FLAGS = NETLINK_REQUEST_FLAGS | NLM_F_CREA
+ 
+ const sockaddr_nl NETLINK_ADDRESS = {AF_NETLINK, 0, 0, 0};
+ 
++#ifdef NO_ADDRESSFAMELY_INET
++const uint8_t AF_FAMILIES[] = {AF_INET6};
++#else
+ const uint8_t AF_FAMILIES[] = {AF_INET, AF_INET6};
++#endif
+ 
+ const char* const IP_VERSIONS[] = {"-4", "-6"};
+ 
+

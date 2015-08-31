@@ -1,0 +1,29 @@
+From 2f7b92873411db7d08f18187c281d414eafbf2a1 Mon Sep 17 00:00:00 2001
+From: Dees Troy <dees_troy@teamw.in>
+Date: Sat, 21 Feb 2015 16:15:03 +0000
+Subject: [PATCH] DO NOT MERGE: Make recovery permissive
+
+This is to make it easier for people to build TWRP in the CM tree
+if for some reason they desire to do so. Some devices wil not obey
+the kernel command line option (exynos, omap) so I am pushing this
+patch so that they can easily cherry pick it. I will abandon it
+shortly.
+
+Change-Id: I14b9104ba26c3725fa51d32355d917d5f025944a
+---
+ recovery.te | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/recovery.te b/recovery.te
+index 821da01..b81fb60 100644
+--- a/recovery.te
++++ b/recovery.te
+@@ -7,6 +7,7 @@ type recovery, domain;
+ # But the allow rules are only included in the recovery policy.
+ # Otherwise recovery is only allowed the domain rules.
+ recovery_only(`
++  permissive recovery;
+   allow recovery self:capability { chown dac_override fowner fsetid setfcap setuid setgid sys_admin sys_tty_config };
+ 
+   # Set security contexts on files that are not known to the loaded policy.
+
