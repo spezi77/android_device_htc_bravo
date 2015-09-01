@@ -16,10 +16,18 @@ on fs
     # mount mtd partitions
     mount_all ./fstab.bravo
 
+# Wait to ensure SD Card is available, and scanning file system of EXT
+    wait /dev/block/mmcblk0p2
+    wait /dev/block/mmcblk0p2
+    wait /dev/block/mmcblk0p2
+    wait /dev/block/mmcblk0p2
+
 on post-fs-data
     # create dalvik-cache on NAND by symlinking /data to /dataint which is our internal data partition
-    mkdir /dataint/dalvik-cache 0771 root root
+    mkdir /dataint/dalvik-cache 0771 system system
     mkdir /dataint/dalvik-cache/arm 0771 system system
+    chown system system /dataint/dalvik-cache
+    chmod 0771 /dataint/dalvik-cache
     symlink /dataint/dalvik-cache /data/dalvik-cache
     symlink /dataint/dalvik-cache/arm /data/dalvik-cache/arm
 
