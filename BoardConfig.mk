@@ -85,6 +85,7 @@ EXTENDED_FONT_FOOTPRINT := true
 REMOVE_PRODUCT_PACKAGES += Gallery2 Exchange2 LiveWallpapers Galaxy4
 REMOVE_PRODUCT_PACKAGES += Email VisualizationWallpapers LiveWallpapersPicker HoloSpiralWallpaper
 REMOVE_PRODUCT_PACKAGES += BasicDreams NoiseField PhaseBeam
+REMOVE_PRODUCT_PACKAGES += CMUpdater CMAccount CMWallpapers CyanogenSetupWizard
 
 # Bootanimation
 TARGET_BOOTANIMATION_PRELOAD := true
