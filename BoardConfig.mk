@@ -32,7 +32,18 @@ include device/htc/qsd8k-common/BoardConfigCommon.mk
 
 TARGET_BOOTLOADER_BOARD_NAME := bravo
 
+# Recovery
 TARGET_RECOVERY_FSTAB := device/htc/bravo/fstab.bravo
+USE_SET_METADATA := false
+
+# TWRP Flags
+DEVICE_RESOLUTION := 480x800
+BOARD_HAS_NO_REAL_SDCARD := true
+TW_EXCLUDE_SU := true
+TW_EXCLUDE_ENCRYPTED_BACKUPS := true
+TW_NO_SCREEN_BLANK := true
+TW_USE_TOOLBOX := true
+HAVE_SELINUX := true
 
 BOARD_KERNEL_CMDLINE := no_console_suspend=1 msmsdcc_sdioirq=1 wire.search_count=5
 BOARD_KERNEL_BASE := 0x20000000
