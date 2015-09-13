@@ -74,5 +74,7 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 LEGACY_RIL := true
 BOARD_USES_LEGACY_RIL := true
 
-# Override in the CM way
-TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-linux-linaro-4.9
+# Remove packages
+REMOVE_PRODUCT_PACKAGES += LiveWallpapers Galaxy4 VisualizationWallpapers LiveWallpapersPicker HoloSpiralWallpaper
+REMOVE_PRODUCT_PACKAGES += Email BasicDreams NoiseField PhaseBeam
+
