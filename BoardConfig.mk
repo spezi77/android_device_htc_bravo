@@ -75,3 +75,7 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 LEGACY_RIL := true
 BOARD_USES_LEGACY_RIL := true
 
+# Remove packages
+REMOVE_PRODUCT_PACKAGES += LiveWallpapers Galaxy4 VisualizationWallpapers LiveWallpapersPicker HoloSpiralWallpaper
+REMOVE_PRODUCT_PACKAGES += Email BasicDreams NoiseField PhaseBeam
+
