@@ -2,17 +2,17 @@
 TARGET_USE_KEYBOARD := international
 
 # Call this first so apn list is actually copied
-$(call inherit-product, vendor/cm/config/telephony.mk)
+$(call inherit-product, vendor/beanstalk/config/telephony.mk)
 
 $(call inherit-product, device/htc/bravo/full_bravo.mk)
 
-# Inherit some common CM stuff.
-$(call inherit-product, vendor/cm/config/common_full_phone.mk)
+# Inherit some common BS stuff.
+$(call inherit-product, vendor/beanstalk/config/common_full_phone.mk)
 
 #
 # Setup device specific product configuration.
 #
-PRODUCT_NAME    := cm_bravo
+PRODUCT_NAME    := bs_bravo
 PRODUCT_BRAND   := htc_wwe
 PRODUCT_DEVICE  := bravo
 PRODUCT_MODEL   := HTC Desire
