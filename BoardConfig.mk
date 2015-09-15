@@ -88,5 +88,6 @@ BOARD_USES_LEGACY_RIL := true
 
 # Remove packages
 REMOVE_PRODUCT_PACKAGES += LiveWallpapers Galaxy4 VisualizationWallpapers LiveWallpapersPicker HoloSpiralWallpaper
-REMOVE_PRODUCT_PACKAGES += Email BasicDreams NoiseField PhaseBeam
+REMOVE_PRODUCT_PACKAGES += Email BasicDreams NoiseField PhaseBeam PhotoTable
+REMOVE_PRODUCT_PACKAGES += PhotoPhase WhisperPush
 
