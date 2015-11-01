@@ -75,7 +75,6 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 LEGACY_RIL := true
 BOARD_USES_LEGACY_RIL := true
 
-# Override in the CM way
-# Use old kernel toolchain.  GCC 4.6 may be the root cause of our modem
-# interface dying all the time.
-TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.10-sm
+# Kernel target toolchain
+TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.8
+
