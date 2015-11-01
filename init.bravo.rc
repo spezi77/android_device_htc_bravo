@@ -14,23 +14,10 @@ on fs
     # Mount /system rw first to give the filesystem a chance to save a checkpoint
     mount yaffs2 mtd@system /system
     mount yaffs2 mtd@system /system ro remount
-    #mount yaffs2 mtd@userdata /data nosuid nodev
+    mount yaffs2 mtd@userdata /data nosuid nodev
     mount yaffs2 mtd@cache /cache nosuid nodev
     # Mount swap partition for enabling zRAM
     swapon_all fstab.bravo
-
-    # wait for sdcard
-    # wait has a timeot of 5 seconds.
-    # calling it 4 times allows 20 seconds for the mmcblk0p2 partition to show up
-    wait /dev/block/mmcblk0p2
-    wait /dev/block/mmcblk0p2
-    wait /dev/block/mmcblk0p2
-    wait /dev/block/mmcblk0p2
-	
-    # File system check
-    exec /bin/busybox sh -c "/bin/e2fsck -p /dev/block/mmcblk0p2 > /fsck.log"
-    # mount the 1st SD-EXT partition for data
-    mount ext4  /dev/block/mmcblk0p2 /data wait noatime nodiratime barrier=0
 
 on post-fs-data
     mkdir /data/misc/wifi 0770 wifi wifi
