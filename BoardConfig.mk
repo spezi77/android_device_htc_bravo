@@ -122,6 +122,8 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE :=  1048576000 # 1000M
 BOARD_FLASH_BLOCK_SIZE := 4096
 TARGET_USERIMAGES_USE_EXT4 := true
 
+BLOCK_BASED_OTA := false
+
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
 
