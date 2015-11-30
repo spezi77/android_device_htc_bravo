@@ -241,7 +241,7 @@
             16 - App switch
          For example, a device with Home, Back and Menu keys would set this
          config to 7. -->
-    <integer name="config_deviceHardwareKeys">8</integer>
+    <integer name="config_deviceHardwareKeys">15</integer>
 
     <!-- Base "touch slop" value used by ViewConfiguration as a
     movement threshold where scrolling should begin. -->
