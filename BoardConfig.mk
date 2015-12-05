@@ -78,4 +78,5 @@ BOARD_USES_LEGACY_RIL := true
 # Kernel target toolchain
 TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.9
 
-
+# Remove packages
+REMOVE_PRODUCT_PACKAGES += Stk PicoTts
