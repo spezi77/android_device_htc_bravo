@@ -90,7 +90,12 @@ BOARD_USES_LEGACY_RIL := true
 TARGET_BOOTANIMATION_HALF_RES := true
 
 # Remove packages
-REMOVE_PRODUCT_PACKAGES += LiveWallpapers Galaxy4 VisualizationWallpapers LiveWallpapersPicker HoloSpiralWallpaper
+REMOVE_PRODUCT_PACKAGES += LiveWallpapers Galaxy4 VisualizationWallpapers LiveWallpapersPicker HoloSpiralWallpaper MagicSmokeWallpapers
 REMOVE_PRODUCT_PACKAGES += Email BasicDreams NoiseField PhaseBeam PhotoTable
-REMOVE_PRODUCT_PACKAGES += PhotoPhase WhisperPush
+REMOVE_PRODUCT_PACKAGES += PhotoPhase WhisperPush PicoTts Stk Trebuchet CMHome
+
+# Kernel
+BUILD_KERNEL := true
+TARGET_KERNEL_SOURCE := kernel/htc/qsd8k
+TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.9/bin/arm-eabi-
 
