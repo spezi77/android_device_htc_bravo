@@ -23,6 +23,7 @@
 #include <sys/select.h>
 
 #include <cutils/log.h>
+#include <cstring>
 
 #include <linux/input.h>
 

@@ -25,6 +25,7 @@
 #include <linux/lightsensor.h>
 
 #include <cutils/log.h>
+#include <cstring>
 
 #include "LightSensor.h"
 

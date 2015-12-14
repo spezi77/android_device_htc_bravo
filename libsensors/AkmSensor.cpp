@@ -25,6 +25,7 @@
 #include <linux/akm8973.h>
 
 #include <cutils/log.h>
+#include <cstring>
 
 #include "AkmSensor.h"
 
