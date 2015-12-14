@@ -15,6 +15,7 @@
  */
 
 #include <hardware/sensors.h>
+#include <cstring>
 
 #include "nusensors.h"
 

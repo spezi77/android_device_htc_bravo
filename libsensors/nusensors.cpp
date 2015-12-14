@@ -27,6 +27,7 @@
 
 #include <cutils/atomic.h>
 #include <cutils/log.h>
+#include <cstring>
 
 #include "nusensors.h"
 #include "LightSensor.h"
