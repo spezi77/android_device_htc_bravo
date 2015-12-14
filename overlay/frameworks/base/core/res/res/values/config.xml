@@ -216,9 +216,6 @@
     <!-- Boolean indicating whether the wifi chipset has p2p support -->
     <!--<bool translatable="false" name="config_wifi_p2p_support">true</bool>-->
 
-    <!-- Is the device LTE capable -->
-    <bool name="config_lte_capable">false</bool>
-
     <bool name="config_ui_enableFadingMarquee">false</bool>
 
     <!-- Is the notification LED intrusive? Used to decide if there should be a disable option -->
