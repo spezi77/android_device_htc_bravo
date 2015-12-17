@@ -216,7 +216,7 @@ int init_nusensors(hw_module_t const* module, hw_device_t** device)
     memset(&dev->device, 0, sizeof(sensors_poll_device_t));
 
     dev->device.common.tag = HARDWARE_DEVICE_TAG;
-    dev->device.common.version  = 0;
+    dev->device.common.version  = SENSORS_DEVICE_API_VERSION_0_1;
     dev->device.common.module   = const_cast<hw_module_t*>(module);
     dev->device.common.close    = poll__close;
     dev->device.activate        = poll__activate;
