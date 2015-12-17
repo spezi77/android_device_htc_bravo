@@ -15,7 +15,6 @@
  */
 
 #include <hardware/sensors.h>
-#include <cstring>
 
 #include "nusensors.h"
 
@@ -32,56 +31,61 @@
  */
 
 static const struct sensor_t sSensorList[] = {
-	{ .name       = "BMA150 3-axis Accelerometer",
-          .vendor     = "Bosh",
-          .version    = 1,
-          .handle     = SENSORS_HANDLE_BASE+ID_A,
-          .type       = SENSOR_TYPE_ACCELEROMETER,
-          .maxRange   = 4.0f*9.81f,
-          .resolution = (4.0f*9.81f)/256.0f,
-          .power      = 0.2f,
-          .reserved   = {}
-        },
-	{ .name       = "AK8973 3-axis Magnetic field sensor",
-          .vendor     = "Asahi Kasei",
-          .version    = 1,
-          .handle     = SENSORS_HANDLE_BASE+ID_M,
-          .type       = SENSOR_TYPE_MAGNETIC_FIELD,
-          .maxRange   = 2000.0f,
-          .resolution = 1.0f/16.0f,
-          .power      = 6.8f,
-          .reserved   = {}
-        },
-	{ .name       = "AK8973 Orientation sensor",
-          .vendor     = "Asahi Kasei",
-          .version    = 1,
-          .handle     = SENSORS_HANDLE_BASE+ID_O,
-          .type       = SENSOR_TYPE_ORIENTATION,
-          .maxRange   = 360.0f,
-          .resolution = 1.0f,
-          .power      = 7.0f,
-          .reserved   = {}
-        },
-	{ .name       = "CM3602 Proximity sensor",
-          .vendor     = "Capella Microsystems",
-          .version    = 1,
-          .handle     = SENSORS_HANDLE_BASE+ID_P,
-          .type       = SENSOR_TYPE_PROXIMITY,
-          .maxRange   = PROXIMITY_THRESHOLD_CM,
-          .resolution = PROXIMITY_THRESHOLD_CM,
-          .power      = 0.5f,
-          .reserved   = {}
-        },
-	{ .name       = "CM3602 Light sensor",
-          .vendor     = "Capella Microsystems",
-          .version    = 1,
-          .handle     = SENSORS_HANDLE_BASE+ID_L,
-          .type       = SENSOR_TYPE_LIGHT,
-          .maxRange   = 10240.0f,
-          .resolution = 1.0f,
-          .power      = 0.5f,
-          .reserved   = {}
-        },
+	{
+        .name = "BMA150 3-axis Accelerometer",
+        .vendor = "Bosh",
+        .version = 1,
+        .handle = SENSORS_HANDLE_BASE+ID_A,
+        .type = SENSOR_TYPE_ACCELEROMETER,
+        .maxRange = 4.0f*9.81f,
+        .resolution = (4.0f*9.81f)/256.0f,
+        .power = 0.2f,
+        .reserved = {}
+	},
+	{
+        .name = "AK8973 3-axis Magnetic field sensor",
+        .vendor = "Asahi Kasei",
+        .version = 1,
+        .handle = SENSORS_HANDLE_BASE+ID_M,
+        .type = SENSOR_TYPE_MAGNETIC_FIELD,
+        .maxRange = 2000.0f,
+        .resolution = 1.0f/16.0f,
+        .power = 6.8f,
+        .reserved = {}
+	},
+        {
+        .name = "AK8973 Orientation sensor",
+        .vendor = "Asahi Kasei",
+        .version = 1,
+        .handle = SENSORS_HANDLE_BASE+ID_O,
+        .type = SENSOR_TYPE_ORIENTATION,
+        .maxRange = 360.0f,
+        .resolution = 1.0f,
+        .power = 7.0f,
+        .reserved = {}
+	},
+        {
+        .name = "CM3602 Proximity sensor",
+        .vendor = "Capella Microsystems",
+        .version = 1,
+        .handle = SENSORS_HANDLE_BASE+ID_P,
+        .type = SENSOR_TYPE_PROXIMITY,
+        .maxRange = PROXIMITY_THRESHOLD_CM,
+        .resolution = PROXIMITY_THRESHOLD_CM,
+        .power = 0.5f,
+        .reserved = {}
+	},
+        {
+        .name = "CM3602 Light sensor",
+        .vendor = "Capella Microsystems",
+        .version = 1,
+        .handle = SENSORS_HANDLE_BASE+ID_L,
+        .type = SENSOR_TYPE_LIGHT,
+        .maxRange = 10240.0f,
+        .resolution = 1.0f,
+        .power = 0.5f,
+        .reserved = {}
+	 },
 };
 
 static int open_sensors(const struct hw_module_t* module, const char* name,
@@ -101,14 +105,16 @@ static struct hw_module_methods_t sensors_module_methods = {
 struct sensors_module_t HAL_MODULE_INFO_SYM = {
     .common = {
         .tag = HARDWARE_MODULE_TAG,
-        .module_api_version = 1,
-	.hal_api_version = HARDWARE_HAL_API_VERSION,
+        .module_api_version = SENSORS_MODULE_API_VERSION_0_1,
+        .hal_api_version = HARDWARE_HAL_API_VERSION,
         .id = SENSORS_HARDWARE_MODULE_ID,
         .name = "AK8973A & CM3602 Sensors Module",
         .author = "The Android Open Source Project",
         .methods = &sensors_module_methods,
+        .dso = 0,
+        .reserved = { 0 },
     },
-    .get_sensors_list = sensors__get_sensors_list
+    .get_sensors_list = sensors__get_sensors_list,
 };
 
 /*****************************************************************************/
