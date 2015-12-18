@@ -93,7 +93,6 @@ TARGET_BOOTANIMATION_TEXTURE_CACHE := true
 
 # Recovery
 TARGET_RECOVERY_FSTAB   := device/htc/bravo/fstab.bravo
-USE_SET_METADATA := false
 
 # TWRP Flags
 DEVICE_RESOLUTION := 480x800
