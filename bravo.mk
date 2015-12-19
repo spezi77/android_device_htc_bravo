@@ -63,11 +63,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.media.use-awesome=1
 
-# Set usb type
-ADDITIONAL_DEFAULT_PROPERTIES += \
-    persist.sys.ums=1 \
-    persist.sys.usb.config=mass_storage \
-    persist.service.adb.enable=1
+# UMS
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    ro.sys.usb.default.config=mtp \
+    ro.vold.umsdirtyratio=20
 
 #
 # Packages required for bravo
