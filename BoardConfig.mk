@@ -78,7 +78,7 @@ ifeq ($(HOST_OS),linux)
     endif
   endif
 endif
-DONT_DEXPREOPT_PREBUILTS := true
+WITH_DEXPREOPT_BOOT_IMG_ONLY := true
 MALLOC_IMPL := dlmalloc
 
 # Fonts
