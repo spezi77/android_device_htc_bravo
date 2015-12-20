@@ -117,4 +117,4 @@ include device/qcom/sepolicy/sepolicy.mk
 QCOM_NO_SECURE_PLAYBACK := true
 
 # Kernel target toolchain
-TARGET_GCC_VERSION_ARM := 4.8
+TARGET_GCC_VERSION_ARM := 4.9
