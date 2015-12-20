@@ -1,0 +1,40 @@
+From e1421730833ec2de3de18c30dde46972497b6c2d Mon Sep 17 00:00:00 2001
+From: maniacx <macs18max@gmail.com>
+Date: Sat, 21 Nov 2015 19:17:35 +0400
+Subject: [PATCH] remove warning for non triple buffer use and blit
+
+Change-Id: I65686978d68d295245bce42ce9288e33f4df15c7
+---
+ services/surfaceflinger/DisplayHardware/HWComposer.cpp | 3 ---
+ services/surfaceflinger/Layer.cpp                      | 1 -
+ 2 files changed, 4 deletions(-)
+
+diff --git a/services/surfaceflinger/DisplayHardware/HWComposer.cpp b/services/surfaceflinger/DisplayHardware/HWComposer.cpp
+index c57dd5f..b070c81 100644
+--- a/services/surfaceflinger/DisplayHardware/HWComposer.cpp
++++ b/services/surfaceflinger/DisplayHardware/HWComposer.cpp
+@@ -726,9 +726,6 @@ status_t HWComposer::prepare() {
+                     if (l.compositionType == HWC_OVERLAY) {
+                         disp.hasOvComp = true;
+                     }
+-                    if (isCompositionTypeBlit(l.compositionType)) {
+-                        disp.hasFbComp = true;
+-                    }
+                     if (l.compositionType == HWC_CURSOR_OVERLAY) {
+                         disp.hasOvComp = true;
+                     }
+diff --git a/services/surfaceflinger/Layer.cpp b/services/surfaceflinger/Layer.cpp
+index 1ee7242..435bca6 100644
+--- a/services/surfaceflinger/Layer.cpp
++++ b/services/surfaceflinger/Layer.cpp
+@@ -135,7 +135,6 @@ void Layer::onFirstRef() {
+     mSurfaceFlingerConsumer->setName(mName);
+ 
+ #ifdef TARGET_DISABLE_TRIPLE_BUFFERING
+-#warning "disabling triple buffering"
+     mSurfaceFlingerConsumer->setDefaultMaxBufferCount(2);
+ #else
+     mSurfaceFlingerConsumer->setDefaultMaxBufferCount(3);
+-- 
+2.1.4
+

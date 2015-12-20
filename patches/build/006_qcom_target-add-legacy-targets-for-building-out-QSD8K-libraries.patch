@@ -1,0 +1,52 @@
+From 0d885ee7d6213ccd7e2b9b37d35328578e349007 Mon Sep 17 00:00:00 2001
+From: spezi77 <spezi77@gmx.com>
+Date: Sat, 19 Dec 2015 13:08:39 +0100
+Subject: [PATCH] qcom_target: add legacy targets for building out QSD8K
+ libraries
+
+---
+ core/qcom_target.mk | 30 +++++++++++++++++++++++++-----
+ 1 file changed, 25 insertions(+), 5 deletions(-)
+
+diff --git a/core/qcom_target.mk b/core/qcom_target.mk
+index d599ec5..2958a21 100644
+--- a/core/qcom_target.mk
++++ b/core/qcom_target.mk
+@@ -75,12 +75,32 @@ $(call bt-vendor-set-path-variant,bt-caf)
+ 
+ else
+ 
+-$(call project-set-path,qcom-audio,hardware/qcom/audio/default)
+-$(call project-set-path,qcom-display,hardware/qcom/display/$(TARGET_BOARD_PLATFORM))
+-$(call project-set-path,qcom-media,hardware/qcom/media/default)
++# QSD8K doesn't use QCOM_HARDWARE flag
++ifneq ($(filter qsd8k,$(TARGET_BOARD_PLATFORM)),)
++    QCOM_AUDIO_VARIANT := audio-legacy
++    QCOM_GPS_VARIANT := gps-legacy
++else
++    QCOM_AUDIO_VARIANT := audio
++    QCOM_GPS_VARIANT := gps
++endif
++ifeq ($(BOARD_USES_LEGACY_QCOM_DISPLAY),true)
++    QCOM_DISPLAY_VARIANT := display-legacy
++    QCOM_MEDIA_VARIANT := media-legacy
++else
++    QCOM_DISPLAY_VARIANT := display
++    QCOM_MEDIA_VARIANT := media
++endif
+ 
+-$(call project-set-path,CAMERA,hardware/qcom/camera)
+-$(call project-set-path,GPS,hardware/qcom/gps)
++$(call project-set-path,qcom-audio,hardware/qcom/$(QCOM_AUDIO_VARIANT))
++$(call project-set-path,qcom-display,hardware/qcom/$(QCOM_DISPLAY_VARIANT))
++$(call project-set-path,qcom-media,hardware/qcom/$(QCOM_MEDIA_VARIANT))
++
++ifeq ($(USE_DEVICE_SPECIFIC_CAMERA),true)
++    $(call project-set-path,qcom-camera,$(TARGET_DEVICE_DIR)/camera)
++else
++    $(call project-set-path,CAMERA,hardware/qcom/camera)
++endif
++$(call project-set-path,GPS,QCOM_GPS_VARIANT)
+ $(call project-set-path,SENSORS,hardware/qcom/sensors)
+ $(call project-set-path,LOC_API,vendor/qcom/opensource/location)
+ 

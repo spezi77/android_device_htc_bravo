@@ -1,0 +1,41 @@
+From c7ec625282ea0aeb5b299054f6f7bf79007d971a Mon Sep 17 00:00:00 2001
+From: maniacx <macs18max@gmail.com>
+Date: Sat, 21 Nov 2015 19:03:19 +0400
+Subject: [PATCH] Add qsd8k to platform list and disable qcom_bsp
+
+Change-Id: I51fa080ef23a798e4687e1cdcd98ad6d2a39c6c7
+---
+ core/qcom_target.mk | 3 ---
+ core/qcom_utils.mk  | 1 +
+ 2 files changed, 1 insertion(+), 3 deletions(-)
+
+diff --git a/core/qcom_target.mk b/core/qcom_target.mk
+index bbf912b..6eee3fe 100644
+--- a/core/qcom_target.mk
++++ b/core/qcom_target.mk
+@@ -20,10 +20,7 @@ endef
+ ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
+ 
+     qcom_flags := -DQCOM_HARDWARE
+-    qcom_flags += -DQCOM_BSP
+-    qcom_flags += -DQTI_BSP
+ 
+-    TARGET_USES_QCOM_BSP := true
+     TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
+ 
+     # Tell HALs that we're compiling an AOSP build with an in-line kernel
+diff --git a/core/qcom_utils.mk b/core/qcom_utils.mk
+index bb1202c..939cd9c 100755
+--- a/core/qcom_utils.mk
++++ b/core/qcom_utils.mk
+@@ -13,6 +13,7 @@ QCOM_BOARD_PLATFORMS += msm8992
+ QCOM_BOARD_PLATFORMS += msm8994
+ QCOM_BOARD_PLATFORMS += msm_bronze
+ QCOM_BOARD_PLATFORMS += apq8084
++QCOM_BOARD_PLATFORMS := qsd8k
+ 
+ MSM7K_BOARD_PLATFORMS := msm7x30
+ MSM7K_BOARD_PLATFORMS += msm7x27
+-- 
+2.1.4
+

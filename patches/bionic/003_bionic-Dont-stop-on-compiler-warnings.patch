@@ -1,0 +1,22 @@
+From a61aad0abd83c075448ea6f8fc159ab1b41abf3c Mon Sep 17 00:00:00 2001
+From: spezi77 <spezi77@gmx.com>
+Date: Fri, 18 Dec 2015 21:17:12 +0100
+Subject: [PATCH] Don't stop on compiler warnings
+
+---
+ linker/Android.mk | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/linker/Android.mk b/linker/Android.mk
+index 5f35b7d..dd0d1bb 100644
+--- a/linker/Android.mk
++++ b/linker/Android.mk
+@@ -33,7 +33,7 @@ LOCAL_CFLAGS += \
+     -fno-stack-protector \
+     -Wstrict-overflow=5 \
+     -fvisibility=hidden \
+-    -Wall -Wextra -Wunused -Werror \
++    -Wall -Wextra -Wunused \
+ 
+ LOCAL_CFLAGS_arm += -D__work_around_b_19059885__
+ LOCAL_CFLAGS_x86 += -D__work_around_b_19059885__

@@ -1,4 +1,4 @@
-From 26ac6d93e8e1e338afb01d6d7671582ef4a79648 Mon Sep 17 00:00:00 2001
+From 938e0e791bc1166067d5492ee7bfa70e412c7baa Mon Sep 17 00:00:00 2001
 From: Arne Coucheron <arco68@gmail.com>
 Date: Wed, 3 Dec 2014 07:51:12 +0100
 Subject: [PATCH] wifi: Allow building without Wifi HAL
@@ -16,10 +16,10 @@ Change-Id: I36d5525115d8da58a4ea8f285f483cc8079a8e9d
  1 file changed, 13 insertions(+), 11 deletions(-)
 
 diff --git a/service/Android.mk b/service/Android.mk
-index 08b9ff0..137388a 100755
+index a347c9c..91058a9 100644
 --- a/service/Android.mk
 +++ b/service/Android.mk
-@@ -42,17 +42,19 @@ include $(BUILD_STATIC_LIBRARY)
+@@ -61,17 +61,19 @@ include $(BUILD_STATIC_LIBRARY)
  # ============================================================
  LIB_WIFI_HAL := libwifi-hal
  
@@ -49,5 +49,4 @@ index 08b9ff0..137388a 100755
 +  endif
  endif
  
- # Build the HalUtil
-
+ # Make the JNI part

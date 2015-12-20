@@ -1,4 +1,4 @@
-From 6e72456e31569dc9520fa25693f8ba9e9a69476e Mon Sep 17 00:00:00 2001
+From a49a7f10b2b42eb7b7e838a503ca67a52b0d2d2d Mon Sep 17 00:00:00 2001
 From: Arne Coucheron <arco68@gmail.com>
 Date: Wed, 25 Jul 2012 08:23:05 +0200
 Subject: [PATCH] libril: Provide support for legacy ril
@@ -16,13 +16,16 @@ Conflicts:
 	libril/Android.mk
 
 Change-Id: Iaaa794988c1d404765c734fd5f9a7507ee16da53
+
+Conflicts:
+	libril/Android.mk
 ---
  include/telephony/ril.h | 5 ++++-
  libril/Android.mk       | 4 ++++
  2 files changed, 8 insertions(+), 1 deletion(-)
 
 diff --git a/include/telephony/ril.h b/include/telephony/ril.h
-index 62521f4..aad1f8d 100644
+index 2e71367..a8580b3 100644
 --- a/include/telephony/ril.h
 +++ b/include/telephony/ril.h
 @@ -31,7 +31,6 @@
@@ -46,12 +49,12 @@ index 62521f4..aad1f8d 100644
  #define CDMA_ALPHA_INFO_BUFFER_LENGTH 64
  #define CDMA_NUMBER_INFO_BUFFER_LENGTH 81
 diff --git a/libril/Android.mk b/libril/Android.mk
-index 2483fc6..6d4935e 100644
+index c0b6739..3813867 100644
 --- a/libril/Android.mk
 +++ b/libril/Android.mk
-@@ -25,6 +25,10 @@ endif
- 
- LOCAL_MODULE:= libril
+@@ -36,6 +36,10 @@ LOCAL_MODULE:= libril
+ LOCAL_COPY_HEADERS_TO := libril
+ LOCAL_COPY_HEADERS := ril_ex.h
  
 +ifeq ($(BOARD_USES_LEGACY_RIL),true)
 +LOCAL_CFLAGS += -DLEGACY_RIL
@@ -60,4 +63,3 @@ index 2483fc6..6d4935e 100644
  include $(BUILD_SHARED_LIBRARY)
  
  
-

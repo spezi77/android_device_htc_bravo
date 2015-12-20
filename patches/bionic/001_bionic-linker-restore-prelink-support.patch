@@ -1,4 +1,4 @@
-From 14b630a6db2022d2f748752bb6ca71f7b0cd0964 Mon Sep 17 00:00:00 2001
+From 6889c3efefd85053f989f6a0633bfc0045c03289 Mon Sep 17 00:00:00 2001
 From: Pawit Pornkitprasan <p.pawit@gmail.com>
 Date: Fri, 23 Nov 2012 12:27:25 +0700
 Subject: [PATCH] bionic: linker: restore prelink support
@@ -15,39 +15,39 @@ flag:
 Signed-off-by: Humberto Borba <humberos@gmail.com>
 Change-Id: I09401e22c7fc87c4babdc1365ff5fd9bd8520c70
 Signed-off-by: Chet Kener <Cl3Kener@gmail.com>
-Signed-off-by: spezi77 <spezi77@gmx.com>
 
 Conflicts:
 	linker/linker_phdr.cpp
 
 Conflicts:
-	linker/Android.mk
+	linker/linker_phdr.cpp
 ---
- linker/Android.mk      |  3 +++
+ linker/Android.mk      |  4 ++++
  linker/linker_phdr.cpp | 45 ++++++++++++++++++++++++++++++++++++++++++++-
  linker/linker_phdr.h   |  9 ++++++++-
- 3 files changed, 55 insertions(+), 2 deletions(-)
+ 3 files changed, 56 insertions(+), 2 deletions(-)
 
 diff --git a/linker/Android.mk b/linker/Android.mk
-index a847b94..b21e790 100644
+index 7a9b5d9..f53276d 100644
 --- a/linker/Android.mk
 +++ b/linker/Android.mk
-@@ -39,6 +39,9 @@ LOCAL_CPPFLAGS += \
- ifeq ($(TARGET_NEEDS_NON_PIE_SUPPORT),true)
-     LOCAL_CFLAGS += -DENABLE_NON_PIE_SUPPORT
+@@ -49,6 +49,10 @@ ifeq ($(TARGET_IS_64_BIT),true)
+ LOCAL_CPPFLAGS += -DTARGET_IS_64_BIT
  endif
+ 
 +ifeq ($(TARGET_NEEDS_BIONIC_PRELINK_SUPPORT),true)
 +    LOCAL_CFLAGS += -DENABLE_PRELINK_SUPPORT
 +endif
- 
++
  # We need to access Bionic private headers in the linker.
  LOCAL_CFLAGS += -I$(LOCAL_PATH)/../libc/
+ 
 diff --git a/linker/linker_phdr.cpp b/linker/linker_phdr.cpp
-index 4b1c0ca..f1b9e97 100644
+index 30118e3..8df6198 100644
 --- a/linker/linker_phdr.cpp
 +++ b/linker/linker_phdr.cpp
-@@ -123,6 +123,9 @@ ElfReader::ElfReader(const char* name, int fd, off64_t file_offset)
-     : name_(name), fd_(fd), file_offset_(file_offset),
+@@ -137,6 +137,9 @@ ElfReader::ElfReader(const char* name, int fd, off64_t file_offset, off64_t file
+     : name_(name), fd_(fd), file_offset_(file_offset), file_size_(file_size),
        phdr_num_(0), phdr_mmap_(nullptr), phdr_table_(nullptr), phdr_size_(0),
        load_start_(nullptr), load_size_(0), load_bias_(0),
 +#ifdef ENABLE_PRELINK_SUPPORT
@@ -56,7 +56,7 @@ index 4b1c0ca..f1b9e97 100644
        loaded_phdr_(nullptr) {
  }
  
-@@ -286,6 +289,38 @@ size_t phdr_table_get_load_size(const ElfW(Phdr)* phdr_table, size_t phdr_count,
+@@ -301,6 +304,38 @@ size_t phdr_table_get_load_size(const ElfW(Phdr)* phdr_table, size_t phdr_count,
    return max_vaddr - min_vaddr;
  }
  
@@ -95,7 +95,7 @@ index 4b1c0ca..f1b9e97 100644
  // Reserve a virtual address range big enough to hold all loadable
  // segments of a program header table. This is done by creating a
  // private anonymous mmap() with PROT_NONE.
-@@ -296,7 +331,9 @@ bool ElfReader::ReserveAddressSpace(const android_dlextinfo* extinfo) {
+@@ -311,7 +346,9 @@ bool ElfReader::ReserveAddressSpace(const android_dlextinfo* extinfo) {
      DL_ERR("\"%s\" has no loadable segments", name_);
      return false;
    }
@@ -106,12 +106,12 @@ index 4b1c0ca..f1b9e97 100644
    uint8_t* addr = reinterpret_cast<uint8_t*>(min_vaddr);
    void* start;
    size_t reserved_size = 0;
-@@ -318,7 +355,13 @@ bool ElfReader::ReserveAddressSpace(const android_dlextinfo* extinfo) {
+@@ -339,7 +376,13 @@ bool ElfReader::ReserveAddressSpace(const android_dlextinfo* extinfo) {
        return false;
      }
      int mmap_flags = MAP_PRIVATE | MAP_ANONYMOUS;
 +#ifndef ENABLE_PRELINK_SUPPORT
-     start = mmap(addr, load_size_, PROT_NONE, mmap_flags, -1, 0);
+     start = mmap(mmap_hint, load_size_, PROT_NONE, mmap_flags, -1, 0);
 +#else
 +    if (required_base_ != 0)
 +      mmap_flags |= MAP_FIXED;
@@ -121,7 +121,7 @@ index 4b1c0ca..f1b9e97 100644
        DL_ERR("couldn't reserve %zd bytes of address space for \"%s\"", load_size_, name_);
        return false;
 diff --git a/linker/linker_phdr.h b/linker/linker_phdr.h
-index 65d302c..ac5cf61 100644
+index 3affa66..db09d80 100644
 --- a/linker/linker_phdr.h
 +++ b/linker/linker_phdr.h
 @@ -49,6 +49,9 @@ class ElfReader {
@@ -134,7 +134,7 @@ index 65d302c..ac5cf61 100644
  
   private:
    bool ReadElfHeader();
-@@ -76,7 +79,11 @@ class ElfReader {
+@@ -77,7 +80,11 @@ class ElfReader {
    size_t load_size_;
    // Load bias.
    ElfW(Addr) load_bias_;
@@ -147,4 +147,3 @@ index 65d302c..ac5cf61 100644
    // Loaded phdr.
    const ElfW(Phdr)* loaded_phdr_;
  };
-
