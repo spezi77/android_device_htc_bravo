@@ -71,14 +71,9 @@ BOARD_UMS_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun0/file"
 TARGET_CPU_SMP := false
 
 # ART
-ifeq ($(HOST_OS),linux)
-  ifeq ($(TARGET_BUILD_VARIANT),userdebug)
-    ifeq ($(WITH_DEXPREOPT),)
-      WITH_DEXPREOPT := true
-    endif
-  endif
-endif
-WITH_DEXPREOPT_BOOT_IMG_ONLY := true
+WITH_DEXPREOPT := true
+WITH_DEXPREOPT_COMP := true
+WITH_DEXPREOPT_PREBUILTS := true
 MALLOC_IMPL := dlmalloc
 
 # Fonts
