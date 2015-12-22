@@ -132,3 +132,8 @@ $(call inherit-product-if-exists, vendor/htc/bravo/bravo-vendor.mk)
 # Enable translucent status bar
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.force_highendgfx=true
+
+# Specify a default lcd density to ensure that Slim doesn't set it to 200
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.lcd_density=240
+
