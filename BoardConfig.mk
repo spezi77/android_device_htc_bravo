@@ -79,7 +79,10 @@ MALLOC_IMPL := dlmalloc
 TARGET_CPU_SMP := false
 
 # Fonts
-EXTENDED_FONT_FOOTPRINT := true
+EXTENDED_FONT_FOOTPRINT := false
+
+# Slim down fonts
+REMOVE_PRODUCT_PACKAGES += NotoSansSC-Regular.otf NotoSansJP-Regular.otf NotoSansTC-Regular.otf
 
 # Remove packages
 REMOVE_PRODUCT_PACKAGES += CMUpdater
