@@ -85,7 +85,7 @@ EXTENDED_FONT_FOOTPRINT := false
 REMOVE_PRODUCT_PACKAGES += NotoSansSC-Regular.otf NotoSansJP-Regular.otf NotoSansTC-Regular.otf
 
 # Remove packages
-REMOVE_PRODUCT_PACKAGES += CMUpdater
+REMOVE_PRODUCT_PACKAGES += CMUpdater CyanogenSetupWizard PhotoTable PhotoPhase PhaseBeam HoloSpiralWallpaper LiveWallpapers
 
 # Bootanimation
 TARGET_BOOTANIMATION_PRELOAD := true
