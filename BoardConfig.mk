@@ -29,6 +29,8 @@ USE_CAMERA_STUB := false
 ifeq ($(USE_CAMERA_STUB),false)
 BOARD_CAMERA_LIBRARIES := libcamera
 endif
+QCOM_BSP_CAMERA_ABI_HACK := true
+SK_SUPPORT_LEGACY_SETCONFIG := true
 
 # inherit from the proprietary version
 -include vendor/htc/bravo/BoardConfigVendor.mk
