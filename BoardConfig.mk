@@ -74,5 +74,8 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 LEGACY_RIL := true
 BOARD_USES_LEGACY_RIL := true
 
-# Override in the CM way
-TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-linux-linaro-4.9/bin/arm-eabi-
+# Kernel target toolchain
+TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.9
+KERNEL_TOOLCHAIN_PREFIX:=$(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/arm/arm-eabi-4.9/bin/arm-eabi-
+
+
