@@ -34,11 +34,18 @@ TARGET_BOOTLOADER_BOARD_NAME := bravo
 
 TARGET_RECOVERY_FSTAB := device/htc/bravo/fstab.bravo
 
+# Inline kernel building
+BUILD_KERNEL := true
+
+TARGET_KERNEL_CONFIG := evervolv_bravo_defconfig
+TARGET_KERNEL_SOURCE := kernel/htc/qsd8k
+
+KERNEL_TOOLCHAIN_PREFIX := arm-eabi-
+KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-eabi-4.9/bin
+
 BOARD_KERNEL_CMDLINE := no_console_suspend=1 msmsdcc_sdioirq=1 wire.search_count=5
 BOARD_KERNEL_BASE := 0x20000000
 BOARD_KERNEL_NEW_PPPOX := true
-
-TARGET_KERNEL_CONFIG    := evervolv_bravo_defconfig
 
 # to enable the GPS HAL
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := bravo
@@ -73,9 +80,3 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 # Legacy ril (for CM)
 LEGACY_RIL := true
 BOARD_USES_LEGACY_RIL := true
-
-# Kernel target toolchain
-TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.9
-KERNEL_TOOLCHAIN_PREFIX:=$(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/arm/arm-eabi-4.9/bin/arm-eabi-
-
-
