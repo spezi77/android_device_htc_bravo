@@ -22,9 +22,6 @@
     <!-- Flag indicating whether we should enable the automatic brightness in Settings.
     config_hardware_automatic_brightness_available is not set, so we will use software implementation -->
     <bool name="config_automatic_brightness_available">true</bool>
-    
-    <!-- disable menu hard key on bravo in non-pattern lockscreen -->
-    <bool name="config_disableMenuKeyInLockScreen">true</bool>
 
     <!-- Flag indicating whether the surface flinger has limited
          alpha compositing functionality in hardware.  If set, the window
