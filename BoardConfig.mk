@@ -40,8 +40,7 @@ BUILD_KERNEL := true
 TARGET_KERNEL_CONFIG := evervolv_bravo_defconfig
 TARGET_KERNEL_SOURCE := kernel/htc/qsd8k
 
-KERNEL_TOOLCHAIN_PREFIX := arm-eabi-
-KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-eabi-4.9/bin
+TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.9/bin/arm-eabi-
 
 BOARD_KERNEL_CMDLINE := no_console_suspend=1 msmsdcc_sdioirq=1 wire.search_count=5
 BOARD_KERNEL_BASE := 0x20000000
