@@ -110,8 +110,3 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Torch
 PRODUCT_PACKAGES += \
     Torch
-
-# Specify a default lcd density to ensure that Slim doesn't set it to 200
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.lcd_density=240
-
