@@ -135,3 +135,5 @@ QCOM_NO_SECURE_PLAYBACK := true
 
 # Kernel target toolchain
 TARGET_GCC_VERSION_ARM := 4.9
+KERNEL_TOOLCHAIN_PREFIX := arm-eabi-
+KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-eabi-4.9/bin
