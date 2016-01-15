@@ -70,11 +70,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # UMS
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    ro.sys.usb.default.config=mtp \
     ro.vold.umsdirtyratio=20
-
-# This is needed for the usb workaround
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=charging
 
 #
 # Packages required for bravo
