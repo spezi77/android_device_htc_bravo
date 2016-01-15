@@ -80,6 +80,10 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 # Packages required for bravo
 #
 
+# Camera
+PRODUCT_PACKAGES += \
+    Snap
+
 # Wifi
 PRODUCT_PACKAGES += \
     dhcpcd.conf \
