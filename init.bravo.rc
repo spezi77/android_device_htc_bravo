@@ -2,15 +2,15 @@ import init.power.rc
 import init.bravo.usb.rc
 
 on init
-    mkdir /storage 0050 system sdcard_r
-    mkdir /mnt/media_rw/sdcard0 0700 media_rw media_rw
-    mkdir /storage/sdcard0 0700 root root
+    mkdir /mnt/shell/emulated 0700 shell shell
+    mkdir /storage/emulated 0555 root root
 
     # for backwards compatibility
     symlink /sdcard /mnt/sdcard
-    symlink /sdcard /storage/sdcard0
+    symlink /sdcard /storage/sdcard0 
 
 on fs
+    setprop ro.crypto.fuse_sdcard true
     # mount mtd partitions
     mount_all ./fstab.bravo
 
