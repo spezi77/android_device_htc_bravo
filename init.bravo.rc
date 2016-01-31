@@ -129,10 +129,10 @@ on boot
     write /proc/sys/net/ipv6/conf/rmnet7/accept_ra 2
 
     # compass/accelerometer daemon
-service akmd /system/bin/akmd
-    class main
-    user compass
-    group compass misc input
+#service akmd /system/bin/akmd
+#    class main
+#    user compass
+#    group compass misc input
 
 service wpa_supplicant /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
