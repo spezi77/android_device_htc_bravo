@@ -91,22 +91,6 @@ on boot
     write /sys/kernel/mm/ksm/sleep_millisecs 500
     write /sys/kernel/mm/ksm/run 1
     
-    # Network tweaks
-    write /proc/sys/net/ipv4/tcp_fin_timeout 30
-    write /proc/sys/net/ipv4/tcp_keepalive_probes 5
-    write /proc/sys/net/ipv4/tcp_keepalive_intvl 30
-    write /proc/sys/net/ipv4/tcp_timestamps 1
-    write /proc/sys/net/ipv4/tcp_keepalive_time 1200
-    write /proc/sys/net/core/rmem_max 404480
-    write /proc/sys/net/core/wmem_max 404480
-    write /proc/sys/net/core/rmem_default 256960
-    write /proc/sys/net/core/wmem_default 256960
-    write /proc/sys/net/ipv4/tcp_tw_reuse 1
-    write /proc/sys/net/ipv4/tcp_tw_recycle 1
-    write /proc/sys/net/ipv4/tcp_sack 1
-    write /proc/sys/net/ipv4/tcp_window_scaling 1
-    write /proc/sys/net/ipv4/tcp_mem "8192 87380 404480"
-    
     # The next two settings will be overwritten every time
     # the network type switches (wifi <-> umts etc.)
     # so we start with wifi values to ensure best
