@@ -48,8 +48,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.ril.enable.managed.roaming=1 \
     ro.ril.oem.nosim.ecclist=911,112,999,000,08,118,120,122,110,119,995 \
     ro.ril.emc.mode=2 \
-    ro.telephony.ril.config=signalstrengthgsm,apptypesim \
-    ro.vold.umsdirtyratio=20
+    ro.telephony.ril.config=signalstrengthgsm,apptypesim
 
 # Tweaks
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -67,10 +66,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Use awesome player instead of nuplayer
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.media.use-awesome=1
-
-# UMS
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    ro.vold.umsdirtyratio=20
 
 # This is needed for the usb workaround
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
