@@ -9,6 +9,8 @@ on init
     symlink /sdcard /mnt/sdcard
     symlink /sdcard /storage/sdcard0 
 
+    export LD_SHIM_LIBS "/system/lib/hw/camera.qsd8k.so|libshim_camera.so:/system/lib/hw/camera.qsd8k.so|libshim_skia.so"
+
 on fs
     setprop ro.crypto.fuse_sdcard true
     # mount mtd partitions
