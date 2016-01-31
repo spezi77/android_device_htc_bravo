@@ -256,9 +256,6 @@
          format is UMTS|LTE|... -->
     <string name="config_radio_access_family">GPRS|EDGE|UMTS|HSDPA|HSUPA|HSPA|GSM|WCDMA</string>
 
-    <!-- Is the device LTE capable -->
-    <bool name="config_lte_capable">false</bool>
-
     <!-- Ultrasound support for Mic/speaker path -->
     <!-- Whether the default microphone audio source supports near-ultrasound frequencies
          (range of 18 - 21 kHz). -->
