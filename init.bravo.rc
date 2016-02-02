@@ -135,10 +135,28 @@ on boot
 #    user compass
 #    group compass misc input
 #    seclabel u:r:akmd:s0
+    
+    # bluetooth
+service dhcpcd_bt-pan /system/bin/dhcpcd -ABKL
+    class main
+    disabled
+    oneshot
 
+    # bluetooth
+service iprenew_bt-pan /system/bin/dhcpcd -n
+    class main
+    disabled
+    oneshot
+    
+    # wifi
+service iprenew_wlan0 /system/bin/dhcpcd -n
+    class main
+    disabled
+    oneshot
+
+    # wifi
 service wpa_supplicant /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
-    -I/system/etc/wifi/wpa_supplicant_overlay.conf \
     -e/data/misc/wifi/entropy.bin \
     -g@android:wpa_wlan0
 
@@ -153,32 +171,14 @@ service dhcpcd_wlan0 /system/bin/dhcpcd -aABDKL
     disabled
     oneshot
     
-    # bluetooth
-service dhcpcd_bnep0 /system/bin/dhcpcd -aABKL
-    class main
-    disabled
-    oneshot
-    
-    # wifi
-service iprenew_wlan0 /system/bin/dhcpcd -n
-    class main
-    disabled
-    oneshot
-
-    # bluetooth
-service iprenew_bnep0 /system/bin/dhcpcd -n
-    class main
-    disabled
-    oneshot
+    # wifi - Tethering
+on property:init.svc.wpa_supplicant=stopped
+    stop dhcpcd
 
     # LMK values
     # 6, 12, 26, 48, 64, 96 MB
 on property:sys.boot_completed=1
     write /sys/module/lowmemorykiller/parameters/minfree 1536,3072,6656,12288,16384,24576
-    
-    # Wifi - Tethering
-on property:init.svc.wpa_supplicant=stopped
-    stop dhcpcd
 
     # swap enabler
 service swap-enabler /system/bin/sh /system/bin/handle_swap.sh
