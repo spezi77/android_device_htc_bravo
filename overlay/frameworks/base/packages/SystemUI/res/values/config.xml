@@ -30,4 +30,7 @@
     <!-- Use hardware layers in recents -->
     <bool name="config_recents_use_hardware_layers">true</bool>
 
+    <!-- Use alternative way to blur lockscreen -->
+    <bool name="blur_need_alternative_way">true</bool>
+
 </resources>
