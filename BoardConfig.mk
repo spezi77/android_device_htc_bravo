@@ -29,7 +29,6 @@ USE_CAMERA_STUB := false
 ifeq ($(USE_CAMERA_STUB),false)
 BOARD_CAMERA_LIBRARIES := libcamera
 endif
-QCOM_BSP_CAMERA_ABI_HACK := true
 SK_SUPPORT_LEGACY_SETCONFIG := true
 
 # inherit from the proprietary version
@@ -63,9 +62,6 @@ TARGET_NO_NETD_AF_INET := true
 BOARD_USE_LEGACY_TRACKPAD := true
 BOARD_NO_WIFI_HAL := true
 BOARD_HAVE_PRE_KITKAT_AUDIO_POLICY_BLOB := true
-
-# Give up OpenJDK enforcement
-DISABLE_OPENJDK_CHECK := true
 
 # USB
 BOARD_USE_USB_MASS_STORAGE_SWITCH := true
