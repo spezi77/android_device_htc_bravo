@@ -33,4 +33,7 @@
     <!-- Use alternative way to blur lockscreen -->
     <bool name="blur_need_alternative_way">true</bool>
 
+    <!-- Allow Flashlight service to use wakelock -->
+    <bool name="flashlight_use_wakelock">true</bool>
+
 </resources>
