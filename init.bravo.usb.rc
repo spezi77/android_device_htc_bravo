@@ -12,6 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Workaround to revert https://github.com/CyanogenMod/android_frameworks_base/commit/1a008c1ca04871386830f511ee4b47299b92b01f
+# Remove mtp from persist.sys.usb.config right after it's added
+on property:persist.sys.usb.config=charging,adb
+    setprop persist.sys.usb.config adb
+
 on init
     write /sys/class/android_usb/android0/f_rndis/manufacturer HTC
     write /sys/class/android_usb/android0/f_rndis/vendorID 0BB4
