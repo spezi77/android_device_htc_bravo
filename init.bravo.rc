@@ -186,7 +186,7 @@ service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
     user root
     disabled
     oneshot
-    
+
 on property:dev.bootcomplete=1
     start qcom-post-boot
     start swap-enabler

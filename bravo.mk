@@ -52,10 +52,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Tweaks
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.ksm.default=1 \
-    ro.zram.default=1
+    ro.ksm.default=1
 
-# Use swap for LP
+# Use swap
 PRODUCT_COPY_FILES += \
     device/htc/bravo/prebuilt/swap/handle_swap:system/bin/handle_swap.sh
 
