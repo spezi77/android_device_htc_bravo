@@ -19,13 +19,9 @@ on fs
     wait /dev/block/mmcblk0p2
 
 on post-fs-data
-    # create dalvik-cache on NAND by creating a symbolic link to /dataint/dalvik-cache
-    mkdir /dataint/dalvik-cache 0771 root root
-    mkdir /dataint/dalvik-cache/arm 0771 system system
-    chown system system /dataint/dalvik-cache
-    chmod 0771 /dataint/dalvik-cache
-    ln -s /dataint/dalvik-cache /data/dalvik-cache
-    ln -s /dataint/dalvik-cache/arm /data/dalvik-cache/arm
+    # create dalvik-cache on sd-ext (ext4) partition
+    mkdir /data/dalvik-cache 0771 root root
+    mkdir /data/dalvik-cache/arm 0771 system system
     chown system system /data/dalvik-cache
     chmod 0771 /data/dalvik-cache
 
