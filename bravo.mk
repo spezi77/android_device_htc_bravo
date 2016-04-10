@@ -54,9 +54,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.ksm.default=1
 
-# Use swap
+# Init post-boot swap script
 PRODUCT_COPY_FILES += \
-    device/htc/bravo/prebuilt/swap/handle_swap:system/bin/handle_swap.sh
+    device/htc/bravo/init.handle_swap.post_boot.sh:system/etc/init.handle_swap.post_boot.sh
 
 # Disable bootanimation sound
 PRODUCT_PROPERTY_OVERRIDES += \

@@ -171,9 +171,10 @@ on property:sys.boot_completed=1
     write /sys/module/lowmemorykiller/parameters/minfree 1536,3072,6656,12288,16384,24576
 
     # swap enabler
-service swap-enabler /system/bin/sh /system/bin/handle_swap.sh
+service swap-enabler /system/bin/sh /system/etc/init.handle_swap.post_boot.sh
     class late_start
     user root
+    group root
     disabled
     oneshot
 
