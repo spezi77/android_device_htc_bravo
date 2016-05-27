@@ -78,6 +78,10 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     Snap
 
+# Gello
+PRODUCT_PACKAGES += \
+    Gello
+
 # Wifi
 PRODUCT_PACKAGES += \
     dhcpcd.conf \
