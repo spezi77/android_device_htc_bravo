@@ -130,6 +130,6 @@ TARGET_QCOM_LEGACY_OMX := true
 QCOM_NO_SECURE_PLAYBACK := true
 
 # Kernel target toolchain
-TARGET_GCC_VERSION_ARM := 7.0
+TARGET_GCC_VERSION_ARM := 5.3
 KERNEL_TOOLCHAIN_PREFIX := arm-eabi-
-KERNEL_TOOLCHAIN := /home/spezi77/android/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-eabi-7.0/bin
+KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-eabi-5.3/bin
