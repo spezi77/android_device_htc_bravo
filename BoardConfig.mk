@@ -34,6 +34,9 @@ TARGET_BOOTLOADER_BOARD_NAME := bravo
 
 TARGET_RECOVERY_FSTAB := device/htc/bravo/fstab.bravo
 
+# Use O3 optimization
+TARGET_USE_O3 := true
+
 # Inline kernel building
 BUILD_KERNEL := true
 
