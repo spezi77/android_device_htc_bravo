@@ -35,7 +35,6 @@ TARGET_BOOTLOADER_BOARD_NAME := bravo
 
 BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive androidboot.hardware=bravo
 BOARD_KERNEL_BASE := 0x20000000
-BOARD_KERNEL_NEW_PPPOX := true
 
 TARGET_KERNEL_CONFIG    := bravo_defconfig
 TARGET_RAMDISK_COMPRESSION := xz --check=crc32 --arm --lzma2=dict=1MiB
@@ -56,11 +55,6 @@ BOARD_USE_LEGACY_TOUCHSCREEN := true
 BOARD_USE_LEGACY_TRACKPAD := true
 BOARD_NO_WIFI_HAL := true
 TARGET_NO_NETD_AF_INET := true
-
-# USB
-BOARD_USE_USB_MASS_STORAGE_SWITCH := true
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun0/file
-BOARD_UMS_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun0/file"
 
 # Fonts
 EXTENDED_FONT_FOOTPRINT := true

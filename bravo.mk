@@ -62,10 +62,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.media.use-awesome=1
 
-# UMS
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    ro.vold.umsdirtyratio=20
-
 # This is needed for the usb workaround
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=charging
