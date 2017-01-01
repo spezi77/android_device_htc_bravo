@@ -23,10 +23,12 @@ on post-fs-data
     mkdir /dataint/dalvik-cache/arm 0771 system system
     chown system system /dataint/dalvik-cache
     chmod 0771 /dataint/dalvik-cache
-    ln -s /dataint/dalvik-cache /data/dalvik-cache
-    ln -s /dataint/dalvik-cache/arm /data/dalvik-cache/arm
+    symlink /dataint/dalvik-cache /data/dalvik-cache
+    symlink /dataint/dalvik-cache/arm /data/dalvik-cache/arm
     chown system system /data/dalvik-cache
     chmod 0771 /data/dalvik-cache
+    mkdir /data/cache 0771 system cache
+    symlink /data/cache /cache
 
 on boot
     mount debugfs /sys/kernel/debug /sys/kernel/debug
