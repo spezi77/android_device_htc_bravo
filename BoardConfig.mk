@@ -24,6 +24,7 @@
 # variant, so that it gets overwritten by the parent (which goes
 # against the traditional rules of inheritance).
 USE_CAMERA_STUB := false
+SK_SUPPORT_LEGACY_SETCONFIG := true
 
 # inherit from the proprietary version
 -include vendor/htc/bravo/BoardConfigVendor.mk
