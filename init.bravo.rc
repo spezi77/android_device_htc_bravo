@@ -3,7 +3,6 @@ import init.bravo.usb.rc
 
 on init
     # for backwards compatibility
-    symlink /sdcard /mnt/sdcard
     symlink /sdcard /storage/sdcard0 
 
     export LD_SHIM_LIBS "/system/lib/hw/camera.qsd8k.so|libshim_camera.so:/system/lib/hw/camera.qsd8k.so|libshim_skia.so"
