@@ -62,7 +62,7 @@ EXTENDED_FONT_FOOTPRINT := true
 # ART
 WITH_DEXPREOPT := true
 WITH_DEXPREOPT_BOOT_IMG_ONLY := true
-MALLOC_IMPL := dlmalloc
+MALLOC_SVELTE := true
 TARGET_CPU_SMP := false
 
 # Bootanimation
