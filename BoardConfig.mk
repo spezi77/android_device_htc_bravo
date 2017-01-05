@@ -107,6 +107,9 @@ TW_NO_SCREEN_BLANK := true
 TW_USE_TOOLBOX := true
 HAVE_SELINUX := true
 
+# Updater: suppress BLKDISCARD failure
+BOARD_SUPPRESS_EMMC_WIPE := true
+
 # # cat /proc/mtd
 # dev:    size   erasesize  name
 # mtd0: 000a0000 00020000 "misc"
