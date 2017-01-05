@@ -106,6 +106,7 @@ TW_EXCLUDE_ENCRYPTED_BACKUPS := true
 TW_NO_SCREEN_BLANK := true
 TW_USE_TOOLBOX := true
 HAVE_SELINUX := true
+TW_THEME=portrait_hdpi
 
 # Updater: suppress BLKDISCARD failure
 BOARD_SUPPRESS_EMMC_WIPE := true
